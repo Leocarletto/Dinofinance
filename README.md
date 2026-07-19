@@ -63,16 +63,20 @@ do topo e veja a dança.
 > ele tem o estado atual, as pendências e a receita passo a passo de como
 > adicionar um dinossauro novo.
 
-O dinofinance está quase pronto — mas o objetivo final é bem maior:
+O dinofinance está quase pronto — o que falta está organizado em **4 frentes**
+(detalhes e por onde começar cada uma no [ROADMAP.md](ROADMAP.md)):
 
-- ⚠️ **Adicionar TODOS os dinossauros catalogados até hoje** (são mais de mil
-  gêneros descritos pela paleontologia!) como temas de perfil — cada um com
-  sua arte, seu período, seu habitat e sua paleta. Os quatro atuais são só as
-  primeiras fichas do catálogo. 🦴
-- Conciliação automática do extrato importado com os lançamentos previstos
-  (hoje a importação deduplica, mas não faz o "casamento" com pendências);
-- Sincronização entre dispositivos (backend opcional no futuro — a camada
-  `store` em [app/js/data.js](app/js/data.js) já foi desenhada para essa troca).
+1. ☁️ **Backend — armazenamento em nuvem**: mesmo perfil no celular e no PC,
+   com backup (Supabase; a camada `store` em
+   [app/js/data.js](app/js/data.js) já foi desenhada para a troca);
+2. 🦕 ⚠️ **Adicionar mais dinossauros — objetivo: TODOS os catalogados até
+   hoje** (mais de mil gêneros descritos pela paleontologia!), cada um com
+   arte, período, habitat e paleta. Os quatro atuais são só as primeiras
+   fichas do catálogo 🦴;
+3. 🔧 **Melhorias**: conciliação automática extrato × lançamentos previstos,
+   PWA para instalar no celular, metas por categoria, busca…;
+4. 🏦 **Conectar Open Finance**: extrato entrando sozinho — parado por custo
+   dos agregadores (a importação CSV/OFX/PDF cobre o caminho até lá).
 
 ## Como usar
 
