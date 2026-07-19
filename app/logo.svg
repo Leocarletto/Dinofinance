@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Dino Finanças — carnotauro (chifres sobre os olhos, bracinhos curtos) -->
+  <rect width="512" height="512" rx="115" fill="#0a0a0a"/>
+  <g fill="#ffffff">
+    <path d="M200 216C140 218 94 212 58 198C51 202 49 210 53 216C86 250 136 282 196 312Z"/>
+    <ellipse cx="196" cy="316" rx="38" ry="52" transform="rotate(10 196 316)"/>
+    <path d="M182 344C184 364 182 378 177 390L208 390C206 372 208 356 214 340Z"/>
+    <rect x="154" y="376" width="72" height="20" rx="10"/>
+    <ellipse cx="244" cy="270" rx="94" ry="66" transform="rotate(-12 244 270)"/>
+    <ellipse cx="312" cy="202" rx="56" ry="40" transform="rotate(-40 312 202)"/>
+    <ellipse cx="354" cy="270" rx="24" ry="10" transform="rotate(32 354 270)"/>
+    <rect x="340" y="110" width="124" height="84" rx="26"/>
+    <path d="M348 132C342 104 344 86 352 76C360 82 366 104 368 132Z"/>
+    <path d="M400 130C402 98 410 80 422 74C428 82 430 100 426 128Z"/>
+    <ellipse cx="286" cy="314" rx="40" ry="54" transform="rotate(-14 286 314)"/>
+    <path d="M270 342C274 364 272 378 266 390L298 390C294 372 296 356 302 340Z"/>
+    <rect x="258" y="376" width="84" height="20" rx="10"/>
+  </g>
+  <g fill="#0a0a0a">
+    <circle cx="410" cy="140" r="11"/>
+    <circle cx="447" cy="129" r="4.5"/>
+    <rect x="400" y="162" width="72" height="15" rx="7.5"/>
+  </g>
+</svg>

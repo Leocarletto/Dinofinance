@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>dinofinance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+<link id="favicon" rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%230a0a0a'/><g fill='%23fff'><path d='M200 216C140 218 94 212 58 198C51 202 49 210 53 216C86 250 136 282 196 312Z'/><ellipse cx='196' cy='316' rx='38' ry='52' transform='rotate(10 196 316)'/><path d='M182 344C184 364 182 378 177 390L208 390C206 372 208 356 214 340Z'/><rect x='154' y='376' width='72' height='20' rx='10'/><ellipse cx='244' cy='270' rx='94' ry='66' transform='rotate(-12 244 270)'/><ellipse cx='312' cy='202' rx='56' ry='40' transform='rotate(-40 312 202)'/><ellipse cx='354' cy='270' rx='24' ry='10' transform='rotate(32 354 270)'/><rect x='340' y='110' width='124' height='84' rx='26'/><path d='M348 132C342 104 344 86 352 76C360 82 366 104 368 132Z'/><path d='M400 130C402 98 410 80 422 74C428 82 430 100 426 128Z'/><ellipse cx='286' cy='314' rx='40' ry='54' transform='rotate(-14 286 314)'/><path d='M270 342C274 364 272 378 266 390L298 390C294 372 296 356 302 340Z'/><rect x='258' y='376' width='84' height='20' rx='10'/></g><g fill='%230a0a0a'><circle cx='410' cy='140' r='11'/><circle cx='447' cy='129' r='4.5'/><rect x='400' y='162' width='72' height='15' rx='7.5'/></g></svg>">
+</head>
+<body>
+
+<!-- marcas dos dinossauros — as cores seguem o tema/skin via CSS:
+     tile = var(--accent) · corpo = var(--dino-corpo, var(--accent-inv))
+     olho/detalhes = var(--dino-olho, var(--accent)) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- TIRANOSSAURO REX (o padrão preto): cabeçorra, mordida e bracinhos -->
+    <g id="dino-trex">
+      <rect width="512" height="512" rx="115" style="fill:var(--accent,#0a0a0a)"/>
+      <g id="corpo-trex" style="fill:var(--dino-corpo,var(--accent-inv,#ffffff))">
+        <path d="M 196 242 C 132 250, 82 244, 48 226 C 42 232, 42 240, 47 246 C 80 278, 130 302, 190 318 Z"/>
+        <ellipse cx="204" cy="312" rx="40" ry="54" transform="rotate(8 204 312)"/>
+        <path d="M 190 342 C 192 362, 190 376, 185 388 L 218 388 C 216 370, 218 354, 224 340 Z"/>
+        <rect x="160" y="374" width="78" height="20" rx="10"/>
+        <ellipse cx="256" cy="268" rx="98" ry="64" transform="rotate(-14 256 268)"/>
+        <ellipse cx="320" cy="204" rx="50" ry="38" transform="rotate(-38 320 204)"/>
+        <ellipse cx="334" cy="262" rx="16" ry="7" transform="rotate(32 334 262)"/>
+        <ellipse cx="352" cy="250" rx="12" ry="6" transform="rotate(40 352 250)"/>
+        <rect x="336" y="92" width="142" height="96" rx="30"/>
+        <ellipse cx="374" cy="94" rx="28" ry="13"/>
+        <ellipse cx="296" cy="308" rx="42" ry="56" transform="rotate(-12 296 308)"/>
+        <path d="M 280 338 C 284 360, 282 374, 276 386 L 310 386 C 306 368, 308 352, 314 336 Z"/>
+        <rect x="266" y="372" width="86" height="20" rx="10"/>
+      </g>
+      <g id="olho-trex" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
+        <circle cx="418" cy="126" r="12"/>
+        <circle cx="464" cy="114" r="5"/>
+        <rect x="398" y="158" width="84" height="16" rx="8"/>
+      </g>
+    </g>
+
+    <!-- CARNOTAURO (a mascote original; tema vermelho) -->
+    <g id="dino-carno">
+      <rect width="512" height="512" rx="115" style="fill:var(--accent,#0a0a0a)"/>
+      <g id="corpo-carno" style="fill:var(--dino-corpo,var(--accent-inv,#ffffff))">
+        <path d="M200 216C140 218 94 212 58 198C51 202 49 210 53 216C86 250 136 282 196 312Z"/>
+        <ellipse cx="196" cy="316" rx="38" ry="52" transform="rotate(10 196 316)"/>
+        <path d="M182 344C184 364 182 378 177 390L208 390C206 372 208 356 214 340Z"/>
+        <rect x="154" y="376" width="72" height="20" rx="10"/>
+        <ellipse cx="244" cy="270" rx="94" ry="66" transform="rotate(-12 244 270)"/>
+        <ellipse cx="312" cy="202" rx="56" ry="40" transform="rotate(-40 312 202)"/>
+        <ellipse cx="354" cy="270" rx="24" ry="10" transform="rotate(32 354 270)"/>
+        <rect x="340" y="110" width="124" height="84" rx="26"/>
+        <path d="M348 132C342 104 344 86 352 76C360 82 366 104 368 132Z"/>
+        <path d="M400 130C402 98 410 80 422 74C428 82 430 100 426 128Z"/>
+        <ellipse cx="286" cy="314" rx="40" ry="54" transform="rotate(-14 286 314)"/>
+        <path d="M270 342C274 364 272 378 266 390L298 390C294 372 296 356 302 340Z"/>
+        <rect x="258" y="376" width="84" height="20" rx="10"/>
+      </g>
+      <g id="olho-carno" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
+        <circle cx="410" cy="140" r="11"/>
+        <circle cx="447" cy="129" r="4.5"/>
+        <rect x="400" y="162" width="72" height="15" rx="7.5"/>
+      </g>
+    </g>
+
+    <!-- OXALAIA QUILOMBENSIS: espinossaurídeo — vela dorsal + focinho de crocodilo -->
+    <g id="dino-oxalaia">
+      <rect width="512" height="512" rx="115" style="fill:var(--accent,#0a0a0a)"/>
+      <g id="corpo-oxalaia" style="fill:var(--dino-corpo,var(--accent-inv,#ffffff))">
+        <path d="M 132 288 Q 240 158 352 284 Z"/>
+        <path d="M 136 276 C 94 276, 64 264, 46 248 C 42 254, 42 262, 46 268 C 68 290, 102 310, 140 324 Z"/>
+        <path d="M 190 330 C 192 352, 190 368, 185 382 L 216 382 C 214 364, 216 348, 222 332 Z"/>
+        <rect x="162" y="368" width="72" height="20" rx="10"/>
+        <ellipse cx="240" cy="300" rx="118" ry="58"/>
+        <path d="M 286 334 C 290 356, 288 370, 282 384 L 314 384 C 310 366, 312 350, 318 334 Z"/>
+        <rect x="266" y="370" width="80" height="20" rx="10"/>
+        <ellipse cx="330" cy="252" rx="52" ry="34" transform="rotate(-34 330 252)"/>
+        <ellipse cx="374" cy="216" rx="36" ry="28"/>
+        <rect x="366" y="196" width="126" height="21" rx="10.5" transform="rotate(6 366 196)"/>
+        <rect x="366" y="224" width="106" height="15" rx="7.5" transform="rotate(13 366 224)"/>
+        <ellipse cx="330" cy="312" rx="20" ry="9" transform="rotate(34 330 312)"/>
+      </g>
+      <g id="olho-oxalaia" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
+        <circle cx="376" cy="202" r="9"/>
+        <circle cx="472" cy="212" r="3.6"/>
+      </g>
+    </g>
+
+    <!-- BRAQUIOSSAURO: pescoço longo vertical + corpo enorme -->
+    <g id="dino-braquio">
+      <rect width="512" height="512" rx="115" style="fill:var(--accent,#0a0a0a)"/>
+      <g id="corpo-braquio" style="fill:var(--dino-corpo,var(--accent-inv,#ffffff))">
+        <path d="M 140 268 C 100 274, 68 286, 44 304 C 48 312, 56 318, 66 320 C 100 322, 134 326, 168 336 Z"/>
+        <rect x="162" y="330" width="36" height="72" rx="15"/>
+        <rect x="216" y="340" width="36" height="64" rx="15"/>
+        <rect x="272" y="340" width="36" height="64" rx="15"/>
+        <rect x="322" y="330" width="36" height="72" rx="15"/>
+        <ellipse cx="248" cy="290" rx="122" ry="74"/>
+        <path d="M 300 250 C 336 196, 356 140, 362 84 L 406 92 C 400 156, 380 226, 344 292 Z"/>
+        <ellipse cx="388" cy="74" rx="36" ry="24" transform="rotate(12 388 74)"/>
+      </g>
+      <g id="olho-braquio" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
+        <circle cx="398" cy="66" r="6"/>
+        <rect x="398" y="82" width="34" height="8" rx="4" transform="rotate(12 398 82)"/>
+      </g>
+    </g>
+  </defs>
+</svg>
+
+<!-- página inicial do site: hero + vale jurássico + seções (recursos, dinos, CTA) -->
+<div id="tela-login" hidden>
+  <button class="btn-tema tema-flutuante" type="button" title="alternar claro/escuro"></button>
+
+  <div class="landing-hero">
+  <div class="hero">
+    <div class="login-marca hero-marca"><svg class="logo-dino" viewBox="0 0 512 512" aria-hidden="true"><use href="#dino-trex"/></svg>dinofinance</div>
+    <h1 class="hero-titulo">Organize suas finanças<br>
+      <span class="hero-e">&amp;…</span> <span class="hero-palavra" id="hero-palavra">Dinossauros</span></h1>
+    <p class="hero-sub">Despesas, rendimentos e investimentos comparados período a período —
+      100% no seu navegador, com perfis temáticos de dinossauro.</p>
+
+    <!-- seleção de perfil (preenchida pelo app.js quando há perfis salvos) -->
+    <div id="area-perfis" class="area-perfis" hidden></div>
+
+    <div class="login-caixa" id="login-caixa" hidden>
+      <button class="link-btn voltar-perfis" id="voltar-perfis" type="button" hidden>← voltar aos perfis</button>
+
+      <div class="area-google">
+        <div id="slot-google" hidden></div>
+        <button class="btn-google" id="btn-google" type="button">
+          <svg viewBox="0 0 48 48" width="18" height="18"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Entrar com Google
+        </button>
+        <button class="link-btn" id="gid-trocar" type="button" hidden>trocar Client ID</button>
+        <form id="form-gid" class="login-form form-gid" hidden>
+          <input id="gid-valor" placeholder="Client ID (….apps.googleusercontent.com)">
+          <button class="btn primario" type="submit">Salvar e ativar</button>
+          <p class="login-nota">Para ativar: crie um <b>OAuth Client ID</b> (Aplicativo da
+            Web) em console.cloud.google.com → APIs e serviços → Credenciais, adicione a
+            URL deste site em “Origens JavaScript autorizadas” e cole o ID acima. Quem
+            hospeda o site pode fixá-lo para todo mundo em <code>config.js</code>.</p>
+        </form>
+      </div>
+
+      <div class="login-ou"><span>ou com um perfil local</span></div>
+
+      <form id="form-perfil" class="login-form" autocomplete="off">
+        <input id="perfil-nome" placeholder="Seu nome" required>
+        <input id="perfil-email" type="email" placeholder="seu@email.com (opcional)">
+        <div class="campo-tema">
+          <span class="campo-tema-rotulo">Tema do perfil</span>
+          <div class="skin-grade" id="novo-tema"></div>
+        </div>
+        <label class="login-check"><input type="checkbox" id="perfil-exemplo" checked>
+          incluir dados de exemplo</label>
+        <button class="btn primario">Criar perfil e entrar</button>
+      </form>
+      <p class="login-nota">Sem backend: seus dados ficam somente neste navegador,
+        em um perfil separado por pessoa. O login Google apenas identifica o
+        perfil — nada sai da sua máquina.</p>
+    </div>
+
+    <button class="link-btn ld-rolar" data-rolar="ld-recursos" type="button">conhecer o dinofinance ↓</button>
+  </div>
+
+  <!-- vale jurássico (decorativo, segue o tema) -->
+  <div class="vale" aria-hidden="true">
+    <svg class="vale-svg" viewBox="0 0 1600 440" preserveAspectRatio="xMidYMax slice">
+      <circle class="vale-sol" cx="1235" cy="128" r="54"/>
+      <g class="nuvem nuvem-1"><ellipse cx="260" cy="92" rx="72" ry="15"/><ellipse cx="312" cy="78" rx="46" ry="12"/></g>
+      <g class="nuvem nuvem-2"><ellipse cx="880" cy="58" rx="84" ry="14"/><ellipse cx="936" cy="45" rx="50" ry="11"/></g>
+      <path class="vale-longe" d="M0 322 V246 H70 L98 216 H210 L236 246 H330 V266 H470 L505 224 H640 L672 266 H820 V240 H905 L938 210 H1052 L1082 240 H1170 V262 H1300 L1332 228 H1442 L1470 254 H1600 V322 Z"/>
+      <path class="vale-medio" d="M0 440 V236 H46 L84 274 H140 L182 312 H252 L296 352 Q360 388 440 402 Q560 416 700 419 H900 Q1040 416 1150 402 Q1240 390 1300 366 L1348 340 H1400 L1432 306 H1490 L1520 274 H1560 L1600 240 V440 Z"/>
+      <g class="vale-ptero"><path d="M0 18 Q20 -2 44 10 Q52 14 58 12 Q66 2 82 4 Q74 12 66 16 Q80 14 96 22 Q74 26 58 21 L50 36 Q46 26 44 22 Q20 28 0 18 Z"/></g>
+      <path class="vale-perto" d="M0 440 V398 Q120 384 240 394 Q400 404 560 398 Q760 392 960 400 Q1160 406 1360 396 Q1480 390 1600 398 V440 Z
+        M262 394 L272 330 H280 L290 394 Z M276 348 L242 368 H310 Z M276 326 L248 348 H304 Z
+        M1332 396 L1342 338 H1350 L1360 396 Z M1346 354 L1314 374 H1378 Z M1346 332 L1320 354 H1372 Z"/>
+    </svg>
+    <div class="vale-dinos">
+      <span class="dino-anda anda-braquio"><svg viewBox="0 0 512 512"><use href="#corpo-braquio"/></svg></span>
+      <span class="dino-anda anda-carno"><svg viewBox="0 0 512 512"><use href="#corpo-carno"/></svg></span>
+      <span class="dino-anda anda-trex"><svg viewBox="0 0 512 512"><use href="#corpo-trex"/></svg></span>
+      <span class="dino-anda anda-oxalaia espelhado"><svg viewBox="0 0 512 512"><use href="#corpo-oxalaia"/></svg></span>
+    </div>
+  </div>
+  </div>
+
+  <!-- corpo do site: destaques, recursos, dinossauros e chamada final -->
+  <div class="landing-corpo">
+    <section class="ld-sec ld-destaques">
+      <div class="ld-stat"><b>R$ 0</b><span>grátis, sem plano pago nem anúncio</span></div>
+      <div class="ld-stat"><b>100%</b><span>dos dados no seu navegador — sem servidor</span></div>
+      <div class="ld-stat"><b>3</b><span>formatos de extrato: CSV, OFX e PDF</span></div>
+      <div class="ld-stat"><b>4</b><span>dinossauros, do Jurássico ao Cretáceo</span></div>
+    </section>
+
+    <section class="ld-sec" id="ld-recursos">
+      <span class="ld-olho">Recursos</span>
+      <h2 class="ld-titulo">Tudo de um painel financeiro — sem entregar seus dados</h2>
+      <p class="ld-sub">Visão comparativa por período, check-in de contas, investimentos e
+        importação de extrato, num visual de painel de gente grande. Só que 100% seu.</p>
+      <div class="recursos-grade">
+        <div class="cartao rec-cartao">
+          <span class="ico-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="m5 16 4-5 4 3 6-8"/></svg></span>
+          <h3>Visão geral comparativa</h3>
+          <p>Entradas e saídas do período contra o anterior — ou contra o mesmo período
+            do ano passado — com variação %, gráficos e gasto de hoje × ontem.</p>
+        </div>
+        <div class="cartao rec-cartao">
+          <span class="ico-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-6"/></svg></span>
+          <h3>Check-in de contas</h3>
+          <p>Despesas e rendimentos do mês com selos de vencida/aberta/paga, gráfico de
+            círculo no tom do tema e botão Pagar/Receber de um clique.</p>
+        </div>
+        <div class="cartao rec-cartao">
+          <span class="ico-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 6-6 4 4 8-8"/><path d="M15 6h6v6"/></svg></span>
+          <h3>Investimentos</h3>
+          <p>Carteira por tipo (CDB, Tesouro, Ações, Cripto…), aportes, resgates e o
+            rendimento sobre o investido — com a rosca da carteira.</p>
+        </div>
+        <div class="cartao rec-cartao">
+          <span class="ico-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10"/><path d="m8 9 4 4 4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
+          <h3>Importa seu extrato</h3>
+          <p>CSV, OFX e até PDF de fatura — Nubank, Inter, Bradesco, Caixa, BB e
+            genéricos. Aprende suas categorias e sugere o que se repete todo mês.</p>
+        </div>
+        <div class="cartao rec-cartao">
+          <span class="ico-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
+          <h3>Recorrentes e parcelas</h3>
+          <p>Aluguel todo dia 10, notebook em 8× — o mês nasce preenchido sozinho,
+            com contínuas, "até quando" e prévia de parcelamento.</p>
+        </div>
+        <div class="cartao rec-cartao">
+          <span class="ico-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10.5" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span>
+          <h3>Seus dados são seus</h3>
+          <p>Sem backend: tudo vive no seu navegador, em perfis separados com senha
+            opcional. Exporte em JSON quando quiser — Pessoal e PJ no mesmo lugar.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ld-sec" id="ld-dinos">
+      <span class="ld-olho">Perfis temáticos</span>
+      <h2 class="ld-titulo">Escolha seu dinossauro</h2>
+      <p class="ld-sub">Cada perfil é um tema completo: cores, habitat animado no rodapé,
+        marca e favicon. Um deles esconde uma dança.</p>
+      <div class="dino-grade" id="ld-dinos-grade"></div>
+    </section>
+
+    <section class="ld-sec">
+      <div class="ld-cta">
+        <h2 class="ld-titulo">Comece agora — leva menos de um minuto</h2>
+        <p class="ld-sub">Sem cadastro, sem e-mail obrigatório, sem cartão.
+          Crie um perfil e pronto.</p>
+        <button class="btn primario ld-cta-btn" id="ld-cta-btn" type="button">Criar meu perfil 🦖</button>
+      </div>
+    </section>
+
+    <footer class="ld-rodape">
+      <span class="ld-rodape-marca"><svg class="logo-dino" viewBox="0 0 512 512" aria-hidden="true"><use href="#dino-trex"/></svg>dinofinance</span>
+      <span>© 2026 dinofinance — seus dados nunca saem do seu navegador.</span>
+    </footer>
+  </div>
+</div>
+
+<!-- app -->
+<div id="app" hidden>
+  <nav class="topo">
+    <div class="topo-in">
+      <a class="marca" href="#/"><svg class="logo-dino" viewBox="0 0 512 512" aria-hidden="true"><use href="#dino-trex"/></svg>dinofinance</a>
+      <div class="segmentos" id="seg-conta"></div>
+      <button class="btn-tema" type="button" title="alternar claro/escuro"></button>
+      <div class="perfil-area">
+        <button class="btn-icone" id="btn-menu" type="button" title="menu e configurações">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+        <div class="menu" id="menu-perfil" hidden>
+          <div class="menu-cab-perfil">
+            <span class="menu-avatar" id="menu-avatar"></span>
+            <div class="menu-id">
+              <b id="menu-nome"></b>
+              <span class="menu-email" id="menu-email"></span>
+            </div>
+          </div>
+          <div class="menu-temas-rot">Tema do perfil</div>
+          <div class="menu-temas" id="menu-temas"></div>
+          <hr>
+          <button class="menu-item" id="mi-perfil">
+            <span class="mi-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.6-6 8-6s6.5 2 8 6"/></svg></span>
+            Meu perfil <span class="mi-sub">senha, pagamento…</span></button>
+          <button class="menu-item" id="mi-importar">
+            <span class="mi-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10"/><path d="m8 9 4 4 4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
+            Importar extrato <span class="mi-sub">CSV · OFX · PDF</span></button>
+          <button class="menu-item" id="mi-sync" hidden>
+            <span class="mi-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
+            Sincronizar CSVs locais</button>
+          <button class="menu-item" id="mi-exportar">
+            <span class="mi-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V7"/><path d="m8 11 4-4 4 4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
+            Exportar dados <span class="mi-sub">JSON</span></button>
+          <hr>
+          <button class="menu-item" id="mi-sair">
+            <span class="mi-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg></span>
+            Sair</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="corpo-app">
+    <aside class="lateral">
+      <button class="lateral-perfil" id="btn-perfil-card" type="button" title="Meu perfil">
+        <span class="lp-avatar" id="lp-avatar"></span>
+        <span class="lp-id"><b id="lp-nome"></b><span class="lp-email" id="lp-email"></span></span>
+        <svg class="lp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <nav class="lateral-nav">
+        <a class="navlink" data-rota="inicio" href="#/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10.5 9-7.5 9 7.5"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>
+          Início</a>
+        <a class="navlink" data-rota="home" href="#/visao">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+          Visão geral</a>
+        <a class="navlink" data-rota="despesas" href="#/despesas">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m6 13 6 6 6-6"/></svg>
+          Despesas</a>
+        <a class="navlink" data-rota="rendas" href="#/rendimentos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg>
+          Rendimentos</a>
+        <a class="navlink" data-rota="invest" href="#/investimentos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 6-6 4 4 8-8"/><path d="M15 6h6v6"/></svg>
+          Investimentos</a>
+      </nav>
+    </aside>
+    <main class="conteudo" id="conteudo"></main>
+  </div>
+
+  <!-- ambiente do dinossauro (rodapé fixo; a skin ativa escolhe o cenário) -->
+  <div class="ambiente" aria-hidden="true">
+    <!-- carnotauro: deserto vulcânico da Patagônia -->
+    <svg class="amb amb-carno" viewBox="0 0 1600 260" preserveAspectRatio="xMidYMax slice">
+      <path class="amb-1" d="M0 260 V184 H90 L116 156 H220 L246 184 H360 V206 H520 L548 172 H660 L688 206 H820 V260 Z
+        M1300 260 V196 H1390 L1414 168 H1500 L1524 196 H1600 V260 Z"/>
+      <g class="amb-fumaca">
+        <ellipse cx="1080" cy="60" rx="16" ry="7"/>
+        <ellipse cx="1094" cy="38" rx="11" ry="5"/>
+        <ellipse cx="1072" cy="18" rx="8" ry="4"/>
+      </g>
+      <path class="amb-2" d="M900 260 L1062 84 H1098 L1260 260 Z M820 260 L905 170 L990 260 Z"/>
+      <path class="amb-3" d="M0 260 V228 Q140 214 300 224 T640 222 T980 228 T1320 220 T1600 226 V260 Z
+        M240 228 Q262 202 288 228 Z M690 226 Q708 206 728 226 Z M1180 226 Q1204 198 1230 226 Z"/>
+    </svg>
+    <!-- oxalaia: rio com a vela dorsal cruzando a água -->
+    <svg class="amb amb-oxalaia" viewBox="0 0 1600 260" preserveAspectRatio="xMidYMax slice">
+      <path class="amb-1" d="M0 260 V148 Q400 136 800 148 T1600 146 V260 Z"/>
+      <g class="amb-vela"><path d="M-30 0 Q0 -40 30 0 Z M44 -1 Q58 -11 74 -3 Q60 2 44 3 Z"/></g>
+      <path class="amb-2 amb-onda" d="M0 260 V196 Q50 186 100 196 T200 196 T300 196 T400 196 T500 196 T600 196 T700 196 T800 196 T900 196 T1000 196 T1100 196 T1200 196 T1300 196 T1400 196 T1500 196 T1600 196 V260 Z"/>
+      <path class="amb-3" d="M0 260 V236 Q200 226 420 234 T860 232 T1300 236 T1600 232 V260 Z
+        M110 236 L114 176 L118 236 Z M126 236 L131 162 L136 236 Z M142 236 L146 184 L150 236 Z
+        M1438 236 L1442 172 L1446 236 Z M1454 236 L1459 158 L1464 236 Z M1470 236 L1474 180 L1478 236 Z"/>
+    </svg>
+    <!-- braquiossauro: floresta de araucárias -->
+    <svg class="amb amb-braquio" viewBox="0 0 1600 260" preserveAspectRatio="xMidYMax slice">
+      <path class="amb-1" d="M0 260 V170 Q120 142 260 164 Q400 134 540 160 Q690 130 830 158 Q980 136 1120 162 Q1270 138 1420 164 Q1520 148 1600 162 V260 Z"/>
+      <path class="amb-2" d="M136 260 V186 H150 V260 Z M83 192 Q143 148 203 192 Q143 176 83 192 Z
+        M414 260 V158 H430 V260 Z M354 166 Q422 116 490 166 Q422 148 354 166 Z
+        M756 260 V176 H770 V260 Z M700 182 Q763 136 826 182 Q763 165 700 182 Z
+        M1054 260 V150 H1070 V260 Z M994 158 Q1062 106 1130 158 Q1062 140 994 158 Z
+        M1356 260 V182 H1370 V260 Z M1300 188 Q1363 144 1426 188 Q1363 171 1300 188 Z"/>
+      <path class="amb-3" d="M0 260 V240 Q300 230 600 238 T1200 236 T1600 240 V260 Z
+        M180 240 Q202 210 226 240 Z M212 242 Q238 206 264 242 Z
+        M900 238 Q922 210 946 238 Z M1250 240 Q1274 208 1298 240 Z"/>
+    </svg>
+  </div>
+</div>
+
+<div id="flash" class="flash-flutuante" hidden></div>
+
+<div id="modal" class="modal-fundo" hidden>
+  <div class="modal-caixa" role="dialog" aria-modal="true"></div>
+</div>
+
+<script src="config.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

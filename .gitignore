@@ -1,0 +1,13 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+__pycache__/
+
+# configurações locais do Claude Code (não fazem parte do site)
+.claude/
+
+# dados financeiros reais ficam SÓ na sua máquina (o site estático não os usa)
+/data/
