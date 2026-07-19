@@ -59,7 +59,11 @@ do topo e veja a dança.
 
 ## ⚠️ Em desenvolvimento
 
-> O dinofinance está quase pronto — mas o objetivo final é bem maior:
+> **Voltando a mexer no projeto?** Comece pelo **[ROADMAP.md](ROADMAP.md)** —
+> ele tem o estado atual, as pendências e a receita passo a passo de como
+> adicionar um dinossauro novo.
+
+O dinofinance está quase pronto — mas o objetivo final é bem maior:
 
 - ⚠️ **Adicionar TODOS os dinossauros catalogados até hoje** (são mais de mil
   gêneros descritos pela paleontologia!) como temas de perfil — cada um com
