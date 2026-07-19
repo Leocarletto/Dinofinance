@@ -6,5 +6,5 @@
 // testes, http://localhost:8899) e cole o ID abaixo. Deixe "" para desativar —
 // cada pessoa ainda pode configurar o seu na tela de entrada.
 window.FINANCAS_CONFIG = {
-  googleClientId: "",   // ex.: "1234567890-abc123.apps.googleusercontent.com"
+  googleClientId: "149629658091-1isespd11n92sb52bfk035ptsatbgs3b.apps.googleusercontent.com",
 };
