@@ -206,6 +206,7 @@ function entrarPerfilDireto(perfil) {
   store.definirAtivo(perfil.id);
   DB = store.carregarDados(perfil.id);
   gerarMes(compDe(hoje()));
+  mesVisto = null;
   aplicarSkin(skinDe(perfil));
   $("#tela-login").hidden = true;
   $("#app").hidden = false;
@@ -874,7 +875,18 @@ function previaExtrato(nomeArq, ext) {
     if (recsCriadas) _gerarMes(DB, compDe(hoje()));
     salvarDB();
     fecharModal();
-    flash(`✓ ${sel.length} lançamento(s) importados` +
+    // conta em que meses os lançamentos caíram — extrato costuma ser do mês
+    // passado, e sem isso a pessoa acha que a importação "não funcionou"
+    const fmtComp = (cp) => MESES_ABR[+cp.slice(5, 7) - 1] + "/" + cp.slice(0, 4);
+    const comps = sel.map(l => l.data.slice(0, 7)).sort();
+    const de = comps[0], ate = comps[comps.length - 1];
+    const compHoje = compDe(hoje());
+    let onde = "";
+    if (ate < compHoje)
+      onde = ` em ${de === ate ? fmtComp(de) : fmtComp(de) + " a " + fmtComp(ate)} — use as setas ‹ › do mês para vê-los`;
+    else if (de < compHoje)
+      onde = ` (${fmtComp(de)} a ${fmtComp(ate)})`;
+    flash(`✓ ${sel.length} lançamento(s) importados${onde}` +
       (recsCriadas ? ` · ${recsCriadas} recorrente(s) criada(s)` : ""));
     render();
   };
@@ -1241,14 +1253,32 @@ ${formLanc(tipo)}
   $("#btn-importar-nota", caixa).onclick = () => { fecharModal(); abrirImportacao(); };
 }
 
+// mês sendo visto em Despesas/Rendimentos ("AAAA-MM"; null = mês atual) —
+// essencial para enxergar extratos importados de meses anteriores
+let mesVisto = null;
+
+function mudarMes(delta) {
+  if (delta === 0) { mesVisto = null; render(); return; }
+  const comp = mesVisto || compDe(hoje());
+  const [a, m] = comp.split("-").map(Number);
+  const { a: na, m: nm } = addMeses(new Date(a, m - 1, 1), delta);
+  const novo = `${na}-${String(nm + 1).padStart(2, "0")}`;
+  mesVisto = novo === compDe(hoje()) ? null : novo;
+  render();
+}
+
 function paginaLancs(tipo) {
   const titulo = tipo === "renda" ? "Rendimentos" : "Despesas";
   const h = hoje();
-  const fimMes = iso(new Date(h.getFullYear(), h.getMonth(), fimDoMes(h.getFullYear(), h.getMonth())));
   const compAtual = compDe(h);
+  const comp = mesVisto || compAtual;
+  const [a, m] = comp.split("-").map(Number);
+  if (comp > compAtual) gerarMes(comp);   // futuro: materializa recorrentes
+  const fimMes = iso(new Date(a, m - 1, fimDoMes(a, m - 1)));
+  const noAtual = comp === compAtual;
   const itens = DB.lancs
     .filter(l => l.tipo === tipo && l.status !== "pulado" && filtraConta(l)
-      && (l.comp === compAtual || (l.status === "pendente" && l.venc <= fimMes)))
+      && (l.comp === comp || (noAtual && l.status === "pendente" && l.venc <= fimMes)))
     .sort((x, y) => (x.status === "pendente" ? 0 : 1) - (y.status === "pendente" ? 0 : 1)
       || (x.venc < y.venc ? -1 : 1));
   const pendN = itens.filter(l => l.status === "pendente").length;
@@ -1258,9 +1288,15 @@ function paginaLancs(tipo) {
 
   return `
 <h1 class="secao">${titulo}
-  <span class="secao-sub">${MESES[h.getMonth()]} de ${h.getFullYear()}</span></h1>
+  <span class="secao-sub">${MESES[m - 1]} de ${a}</span></h1>
 <div class="filtros">
-  <span class="controle"><span>${itens.length} lançamento(s) no mês · ${pendN} em aberto</span></span>
+  <div class="mes-nav">
+    <button class="btn mini seta" data-mes="-1" title="mês anterior">‹</button>
+    <b class="mes-rotulo">${MESES[m - 1]} de ${a}</b>
+    <button class="btn mini seta" data-mes="1" title="mês seguinte">›</button>
+    ${noAtual ? "" : '<button class="link-btn" data-mes="0">voltar ao mês atual</button>'}
+  </div>
+  <span class="controle"><span>${itens.length} lançamento(s) · ${pendN} em aberto</span></span>
   <span class="espaco"></span>
   <button class="btn mini" id="btn-importacao">Importação</button>
   <button class="btn primario add" data-form="${tipo}">+ ${tipo === "renda" ? "Rendimento" : "Despesa"}</button>
@@ -1555,6 +1591,7 @@ function render() {
     definirTema(b.dataset.usarTema);
     render();   // atualiza o selo "seu tema" nos cartões do Início
   });
+  $$("[data-mes]", c).forEach(b => b.onclick = () => mudarMes(+b.dataset.mes));
 
   c.onclick = (ev) => {
     const b = ev.target.closest("[data-acao]");
