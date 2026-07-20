@@ -104,7 +104,7 @@ const SKINS = {
   anquilossauro: { rotulo: "Anquilossauro", nomeCompleto: "Ankylosaurus magniventris", dino: "anquilo", tile: "#57534e" },
   estegossauro: { rotulo: "Estegossauro", nomeCompleto: "Stegosaurus stenops", dino: "estego", tile: "#4d7c0f" },
   velociraptor: { rotulo: "Velociraptor", nomeCompleto: "Velociraptor mongoliensis", dino: "raptor", tile: "#475569" },
-  paquicefalossauro: { rotulo: "Paquicefalossauro", nomeCompleto: "Pachycephalosaurus wyomingensis", dino: "paqui", tile: "#be185d" },
+  paquicefalossauro: { rotulo: "Paquicefalos­sauro", nomeCompleto: "Pachycephalosaurus wyomingensis", dino: "paqui", tile: "#be185d" },
   dilofossauro: { rotulo: "Dilofossauro", nomeCompleto: "Dilophosaurus wetherilli", dino: "dilofo", tile: "#7c3aed" },
   pterossauro: { rotulo: "Pterossauro", nomeCompleto: "Pteranodon longiceps", dino: "ptero", tile: "#0284c7" },
 };

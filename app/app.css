@@ -2083,10 +2083,66 @@ input[type="date"] { cursor: pointer; }
   width: 100%;
   height: clamp(130px, 22vh, 240px);
 }
+html:not([data-skin]) .amb-trex { display: block; }   /* tema mono = T. rex */
 html[data-skin="carnotauro"] .amb-carno { display: block; }
 html[data-skin="oxalaia"] .amb-oxalaia { display: block; }
 html[data-skin="braquiossauro"] .amb-braquio { display: block; }
+html[data-skin="espinossauro"] .amb-geral,
+html[data-skin="triceratops"] .amb-geral,
+html[data-skin="parassaurolofo"] .amb-geral,
+html[data-skin="anquilossauro"] .amb-geral,
+html[data-skin="estegossauro"] .amb-geral,
+html[data-skin="velociraptor"] .amb-geral,
+html[data-skin="paquicefalossauro"] .amb-geral,
+html[data-skin="dilofossauro"] .amb-geral,
+html[data-skin="pterossauro"] .amb-geral { display: block; }
 .conteudo { position: relative; z-index: 1; }
+
+/* ---------- o dino do tema atravessando o habitat (velocidade = personalidade;
+   oxalaia segue nadando com a vela no rio) ---------- */
+.amb-anda, .amb-voa {
+  position: absolute;
+  left: 0;
+  display: none;
+  will-change: transform;
+  --dino-corpo: color-mix(in srgb, var(--accent) 42%, transparent);
+  --dino-olho: var(--bg);
+}
+.amb-anda { bottom: 8px; }
+.amb-voa { bottom: clamp(150px, 26vh, 260px); }
+.amb-anda svg, .amb-voa svg { display: block; width: 100%; }
+.amb-anda svg {
+  transform-origin: 50% 92%;
+  animation: dino-passo 0.9s ease-in-out infinite alternate;
+}
+.amb-voa svg {
+  transform-origin: 50% 50%;
+  animation: voa-plana 3.4s ease-in-out infinite alternate;
+}
+html:not([data-skin]) .amb-anda-trex { display: block; }
+html[data-skin="carnotauro"] .amb-anda-carno { display: block; }
+html[data-skin="braquiossauro"] .amb-anda-braquio { display: block; }
+html[data-skin="espinossauro"] .amb-anda-espino { display: block; }
+html[data-skin="triceratops"] .amb-anda-tricera { display: block; }
+html[data-skin="parassaurolofo"] .amb-anda-parassauro { display: block; }
+html[data-skin="anquilossauro"] .amb-anda-anquilo { display: block; }
+html[data-skin="estegossauro"] .amb-anda-estego { display: block; }
+html[data-skin="velociraptor"] .amb-anda-raptor { display: block; }
+html[data-skin="paquicefalossauro"] .amb-anda-paqui { display: block; }
+html[data-skin="dilofossauro"] .amb-anda-dilofo { display: block; }
+html[data-skin="pterossauro"] .amb-voa-ptero { display: block; }
+.amb-anda-trex { width: 120px; animation: anda-lr 46s linear infinite; animation-delay: -12s; }
+.amb-anda-carno { width: 104px; animation: anda-lr 24s linear infinite; animation-delay: -9s; }
+.amb-anda-braquio { width: 170px; animation: anda-lr 115s linear infinite; animation-delay: -40s; }
+.amb-anda-espino { width: 150px; animation: anda-lr 72s linear infinite; animation-delay: -20s; }
+.amb-anda-tricera { width: 124px; animation: anda-rl 64s linear infinite; animation-delay: -28s; }
+.amb-anda-parassauro { width: 116px; animation: anda-lr 54s linear infinite; animation-delay: -18s; }
+.amb-anda-anquilo { width: 116px; animation: anda-lr 135s linear infinite; animation-delay: -60s; }
+.amb-anda-estego { width: 128px; animation: anda-rl 108s linear infinite; animation-delay: -35s; }
+.amb-anda-raptor { width: 64px; animation: anda-lr 15s linear infinite; animation-delay: -5s; }
+.amb-anda-paqui { width: 98px; animation: anda-rl 56s linear infinite; animation-delay: -22s; }
+.amb-anda-dilofo { width: 104px; animation: anda-lr 42s linear infinite; animation-delay: -15s; }
+.amb-voa-ptero { width: 108px; animation: anda-rl 58s linear infinite; animation-delay: -21s; }
 
 .amb-1 { fill: color-mix(in srgb, var(--accent) 7%, transparent); }
 .amb-2 { fill: color-mix(in srgb, var(--accent) 11%, transparent); }
@@ -2100,17 +2156,26 @@ html[data-skin="braquiossauro"] .amb-braquio { display: block; }
   30% { opacity: 1; }
   100% { opacity: 0; transform: translateY(-34px); }
 }
-.amb-vela { animation: vela-nada 80s linear infinite; }
-@keyframes vela-nada {
-  from { transform: translate(1680px, 150px); }
-  to   { transform: translate(-160px, 150px); }
+.amb-nado {
+  --dino-corpo: color-mix(in srgb, var(--accent) 42%, transparent);
+  --dino-olho: var(--bg);
+  animation: nado-vai 85s linear infinite;
+  animation-delay: -30s;
 }
+/* use de <g> ignora width/height: a escala fica num <g transform="scale()">
+   intermediário; o balanço anima o use (em unidades pré-escala) */
+.amb-nado use { animation: nado-bob 3.2s ease-in-out infinite alternate; }
+@keyframes nado-vai {
+  from { transform: translate(-180px, 70px); }
+  to   { transform: translate(1780px, 70px); }
+}
+@keyframes nado-bob { to { transform: translateY(-16px); } }
 .amb-onda { animation: onda-bob 7s ease-in-out infinite alternate; }
 @keyframes onda-bob { to { transform: translateY(5px); } }
 
 @media (prefers-reduced-motion: reduce) {
-  .amb-fumaca ellipse, .amb-vela, .amb-onda { animation: none !important; }
-  .amb-vela { display: none; }
+  .amb-fumaca ellipse, .amb-nado, .amb-nado use, .amb-onda { animation: none !important; }
+  .amb-nado { display: none; }
 }
 
 /* ============================================================
@@ -2216,10 +2281,32 @@ html[data-skin="braquiossauro"] .amb-braquio { display: block; }
   animation: dino-passo 0.9s ease-in-out infinite alternate;
 }
 .espelhado svg { scale: -1 1; }
-.anda-braquio { width: 150px; bottom: 4px; animation: anda-lr 92s linear infinite; animation-delay: -24s; }
-.anda-carno { width: 94px; bottom: 0; animation: anda-lr 55s linear infinite; animation-delay: -41s; }
+/* delays calculados p/ o primeiro quadro já mostrar a turma espalhada */
+.anda-braquio { width: 150px; bottom: 4px; animation: anda-lr 92s linear infinite; animation-delay: -20s; }
+.anda-carno { width: 94px; bottom: 0; animation: anda-lr 55s linear infinite; animation-delay: -16s; }
 .anda-trex { width: 108px; bottom: 2px; animation: anda-lr 64s linear infinite; animation-delay: -7s; }
 .anda-oxalaia { width: 120px; bottom: 2px; animation: anda-rl 70s linear infinite; animation-delay: -12s; }
+.anda-espino { width: 138px; bottom: 2px; animation: anda-lr 84s linear infinite; animation-delay: -38s; }
+.anda-tricera { width: 112px; bottom: 0; animation: anda-rl 76s linear infinite; animation-delay: -46s; }
+.anda-parassauro { width: 108px; bottom: 2px; animation: anda-lr 58s linear infinite; animation-delay: -41s; }
+.anda-anquilo { width: 104px; bottom: 0; animation: anda-lr 118s linear infinite; animation-delay: -94s; }
+.anda-estego { width: 118px; bottom: 2px; animation: anda-rl 96s linear infinite; animation-delay: -34s; }
+.anda-raptor { width: 60px; bottom: 0; animation: anda-lr 30s linear infinite; animation-delay: -27s; }
+.anda-paqui { width: 90px; bottom: 2px; animation: anda-rl 62s linear infinite; animation-delay: -46s; }
+.anda-dilofo { width: 96px; bottom: 2px; animation: anda-lr 66s linear infinite; animation-delay: -33s; }
+/* pterossauro plana no céu do vale (balanço próprio + travessia) */
+.dino-voa { position: absolute; left: 0; bottom: min(44vh, 380px); will-change: transform; }
+.dino-voa svg {
+  display: block;
+  width: 100%;
+  transform-origin: 50% 50%;
+  animation: voa-plana 3.4s ease-in-out infinite alternate;
+}
+.voa-ptero { width: 88px; animation: anda-rl 74s linear infinite; animation-delay: -30s; }
+@keyframes voa-plana {
+  from { transform: translateY(0) rotate(-2.5deg); }
+  to   { transform: translateY(-14px) rotate(2.5deg); }
+}
 @keyframes anda-lr {
   from { transform: translateX(-200px); }
   to   { transform: translateX(calc(100vw + 200px)); }
@@ -2316,7 +2403,13 @@ html[data-skin="braquiossauro"] .amb-braquio { display: block; }
 /* seletor de tema (miniaturas de dino nos formulários) */
 .campo-tema { display: flex; flex-direction: column; gap: 7px; }
 .campo-tema-rotulo, .campo-tema > .rotulo { font-size: 12.5px; font-weight: 550; color: var(--cinza); }
-.skin-grade { display: flex; gap: 12px; flex-wrap: wrap; }
+/* grade uniforme: coluna fixa p/ os 13 dinos, rótulo centrado com hífen
+   quando o nome não cabe (Paquicefalossauro…) — nada de fileira torta */
+.skin-grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  gap: 12px 6px;
+}
 .skin-op {
   display: flex;
   flex-direction: column;
@@ -2327,6 +2420,14 @@ html[data-skin="braquiossauro"] .amb-braquio { display: block; }
   font-weight: 550;
   color: var(--mut);
   position: relative;
+}
+.skin-op span {
+  max-width: 100%;
+  text-align: center;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 .skin-op input {
   position: absolute;
@@ -2562,10 +2663,12 @@ a.btn { text-decoration: none; display: inline-flex; align-items: center; }
 
 /* acessibilidade: sem animações para quem prefere menos movimento */
 @media (prefers-reduced-motion: reduce) {
-  .dino-anda, .dino-anda svg, .vale-ptero, .nuvem,
+  .dino-anda, .dino-anda svg, .dino-voa, .dino-voa svg, .vale-ptero, .nuvem,
+  .amb-anda, .amb-anda svg, .amb-voa, .amb-voa svg,
   .carno-danca .logo-dino, .carno-danca::before, .carno-danca::after,
   .hero-palavra::after {
     animation: none !important;
   }
-  .dino-anda { display: none; }
+  .dino-anda, .dino-voa { display: none; }
+  .amb-anda, .amb-voa { display: none !important; }
 }

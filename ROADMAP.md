@@ -60,7 +60,10 @@ paleontologia (mais de mil!)** como temas de perfil — cada um com arte,
 período, habitat e paleta. O catálogo tem 13 fichas: T. rex, Carnotauro,
 Oxalaia, Braquiossauro, Espinossauro, Triceratops, Parassaurolofo,
 Anquilossauro, Estegossauro, Velociraptor, Paquicefalossauro, Dilofossauro
-e Pterossauro (os 9 novos ainda sem habitat animado — passo 4 da receita).
+e Pterossauro. Todos aparecem no vale da landing e passeiam no habitat do
+seu tema dentro do app (velocidade = personalidade; pterossauro voa). Os 9
+novos usam o cenário genérico `.amb-geral` — cenário próprio por bioma
+segue como melhoria futura (passo 4 da receita).
 
 #### 🦴 Receita: como adicionar um dinossauro novo (uns 30–60 min cada)
 
