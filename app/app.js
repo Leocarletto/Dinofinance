@@ -1944,12 +1944,86 @@ function montarLandingSecoes() {
   <div class="dino-meta"><span>📍 ${esc(inf.onde)}</span><span>📏 ${esc(inf.porte)}</span></div>
 </div>`;
   }).join("");
+  $("#ld-tempo-conteudo").innerHTML = montarLinhaTempo();
   $$("[data-rolar]").forEach(b => b.onclick = () =>
     document.getElementById(b.dataset.rolar)?.scrollIntoView({ behavior: "smooth" }));
   $("#ld-cta-btn").onclick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     if (!$("#area-perfis").hidden) $("#btn-novo-perfil")?.click();   // abre o formulário
   };
+}
+
+// linha do tempo geológica dos dinos: barra proporcional das eras (com um ponto
+// por dino na sua época) + lista cronológica agrupada por período, terminando
+// na extinção K–Pg (a "situação" de todos eles)
+function montarLinhaTempo() {
+  // idade média (milhões de anos) de cada tema, p/ posicionar no tempo
+  const TEMPO = {
+    dilofossauro: 193, estegossauro: 152.5, braquiossauro: 152,
+    espinossauro: 96, oxalaia: 95, pterossauro: 85, parassaurolofo: 74.5,
+    velociraptor: 73, carnotauro: 71, paquicefalossauro: 68,
+    mono: 67, triceratops: 67, anquilossauro: 67,
+  };
+  const ERAS = [
+    { nome: "Triássico", ini: 252, fim: 201 },
+    { nome: "Jurássico", ini: 201, fim: 145 },
+    { nome: "Cretáceo", ini: 145, fim: 66 },
+  ];
+  const INI = 252, FIM = 66, DUR = INI - FIM;
+  const px = (ma) => ((INI - ma) / DUR * 100);
+  const eraDe = (ma) => ma > 201 ? "Triássico" : ma > 145 ? "Jurássico" : "Cretáceo";
+
+  // --- barra horizontal proporcional das eras + um ponto por dino ---
+  const faixas = ERAS.map((e, i) => {
+    const l = px(e.ini), w = px(e.fim) - px(e.ini);
+    return `<div class="tl-faixa f${i}" style="left:${l.toFixed(2)}%;width:${w.toFixed(2)}%">
+      <b>${e.nome}</b><small>${e.ini}–${e.fim} Ma</small></div>`;
+  }).join("");
+  const pontos = Object.entries(TEMPO).map(([k, ma]) => {
+    const s = SKINS[k];
+    return `<span class="tl-ponto" style="left:${px(ma).toFixed(2)}%;--dc:${s.tile || "var(--accent)"}"
+      title="${esc(s.rotulo)} · ${esc(DINO_INFO[k].periodo)}"></span>`;
+  }).join("");
+  const barra = `
+<div class="tl-barra">
+  <div class="tl-faixas">${faixas}</div>
+  <div class="tl-track"></div>
+  <div class="tl-pontos">${pontos}</div>
+  <span class="tl-meteoro" title="Extinção K–Pg, há 66 milhões de anos">☄️</span>
+</div>
+<div class="tl-barra-leg"><span>← mais antigo</span><span>menos antigo →</span></div>`;
+
+  // --- lista cronológica (mais antigo em cima), agrupada por período ---
+  const ordenados = Object.entries(TEMPO).sort((a, b) => b[1] - a[1]);
+  const cabEra = (nome) => {
+    const e = ERAS.find(x => x.nome === nome);
+    return `<div class="tl-era"><b>${nome}</b><span>${e.ini}–${e.fim} milhões de anos</span></div>`;
+  };
+  let lista = cabEra("Triássico") +
+    `<div class="tl-nota">Os primeiros dinossauros surgiram aqui — nenhum dos nossos temas é tão antigo (ainda!).</div>`;
+  let eraAtual = "Triássico";
+  for (const [k, ma] of ordenados) {
+    const nome = eraDe(ma);
+    if (nome !== eraAtual) { lista += cabEra(nome); eraAtual = nome; }
+    const s = SKINS[k], inf = DINO_INFO[k];
+    lista += `
+<div class="tl-item" style="--dc:${s.tile || "var(--accent)"}">
+  <span class="tl-no"></span>
+  <svg class="tl-icone" viewBox="0 0 512 512"${tileSkinAttr(s)} aria-hidden="true"><use href="#dino-${s.dino}"/></svg>
+  <div class="tl-txt"><b>${esc(s.rotulo)}</b> <i>${esc(s.nomeCompleto)}</i>
+    <span class="tl-sub">${esc(inf.periodo)} · 📍 ${esc(inf.onde)}</span></div>
+  <span class="tl-idade">~${Math.round(ma)} Ma</span>
+</div>`;
+  }
+  lista += `
+<div class="tl-item tl-extincao">
+  <span class="tl-no">☄️</span>
+  <div class="tl-txt"><b>Extinção K–Pg · há 66 milhões de anos</b>
+    <span class="tl-sub">Um asteroide encerrou a era dos dinossauros. Sobreviveram só as
+      linhagens que viraram aves — todos os nossos temas se despediram aqui.</span></div>
+</div>`;
+
+  return barra + `<div class="tl-lista">${lista}</div>`;
 }
 
 // slogan estilo Stripe: "Organize suas finanças &… <palavra>" (máquina de escrever)
