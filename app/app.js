@@ -267,19 +267,33 @@ function htmlTemas(nome, sel) {
     </label>`).join("");
 }
 
-// easter egg: no tema Carnotauro, 3 cliques rápidos no dino do topo = dança
-let cliquesCarno = 0, timerCarno = null;
-function ligarDancaCarno(el) {
-  el.addEventListener("click", () => {
-    if (skinAtiva !== "carnotauro") return;
+// clique na marca "dinofinance" → volta ao site público (landing com a linha
+// do tempo, recursos etc.) SEM deslogar; reentra-se clicando no próprio perfil.
+function verSite() {
+  $("#app").hidden = true;
+  mostrarLanding();
+  window.scrollTo(0, 0);
+}
+
+// easter egg preservado: no tema Carnotauro, 3 cliques rápidos na marca = dança;
+// a ida ao site é adiada ~320ms p/ o 3º clique poder interceptar.
+let cliquesCarno = 0, timerCarno = null, timerSite = null;
+function ligarMarca(el) {
+  el.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    if (skinAtiva !== "carnotauro") { verSite(); return; }
     cliquesCarno += 1;
     clearTimeout(timerCarno);
     timerCarno = setTimeout(() => { cliquesCarno = 0; }, 600);
     if (cliquesCarno >= 3) {
       cliquesCarno = 0;
+      clearTimeout(timerSite);
       el.classList.add("carno-danca");
       setTimeout(() => el.classList.remove("carno-danca"), 4700);
+      return;
     }
+    clearTimeout(timerSite);
+    timerSite = setTimeout(verSite, 320);
   });
 }
 
@@ -2116,8 +2130,8 @@ function boot() {
 
   window.addEventListener("hashchange", render);
 
-  // easter egg da dança (só age quando a skin ativa é carnotauro)
-  ligarDancaCarno($(".marca"));
+  // marca leva ao site público; no carnotauro guarda a dança (3 cliques)
+  ligarMarca($(".marca"));
 
   if (ativo) entrarPerfil(ativo);
   else mostrarLanding();
