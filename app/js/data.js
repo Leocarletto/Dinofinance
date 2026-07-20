@@ -85,12 +85,18 @@ export const CATEGORIAS_DESPESA = [
   "Financiamento", "Cartão de crédito", "Seguros", "Impostos",
   "Assinaturas", "Internet e telefone", "Educação", "Pet", "Família",
   "Vestuário", "Lazer", "Viagem", "Compras", "Presentes", "Serviços",
-  "Empresa", "Investimentos", "Outros",
+  "Empresa", "Investimentos", "Transferência", "Outros",
 ];
 export const CATEGORIAS_RECEITA = [
   "Salário", "Renda extra", "Ganhos pontuais", "Serviços prestados",
-  "Resgate de investimento", "Outros",
+  "Resgate de investimento", "Transferência", "Outros",
 ];
+
+// transferência entre contas da própria pessoa (categoria "Transferência"):
+// aparece nas listas, mas fica fora de toda soma de gasto/ganho — não é
+// dinheiro que entrou nem saiu. Aceita variações ("Transferencia", plural…).
+export const ehTransferencia = (l) =>
+  /^transfer/.test(String(l.categoria || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase());
 
 // padrão do finance.py + categorias já usadas nos lançamentos do perfil,
 // em ordem alfabética (pt-BR) com "Outros" sempre por último
@@ -302,7 +308,7 @@ export const soma = (arr) => arr.reduce((s, v) => s + v, 0);
 export function serie(db, tipo, ini, fim, conta) {
   const fc = filtraConta(conta);
   const sel = db.lancs.filter((l) => l.status === "pago" && l.pagoEm && l.tipo === tipo
-    && fc(l) && l.pagoEm >= iso(ini) && l.pagoEm <= iso(fim));
+    && fc(l) && !ehTransferencia(l) && l.pagoEm >= iso(ini) && l.pagoEm <= iso(fim));
   const dias = Math.round((fim - ini) / 864e5) + 1;
   if (dias <= 45) {
     const labels = [], vals = [];
@@ -333,7 +339,7 @@ export function porCategoria(db, tipo, ini, fim, conta, topo = 5) {
   const tot = {};
   for (const l of db.lancs) {
     if (l.status === "pago" && l.pagoEm && l.tipo === tipo && fc(l)
-      && l.pagoEm >= iso(ini) && l.pagoEm <= iso(fim))
+      && !ehTransferencia(l) && l.pagoEm >= iso(ini) && l.pagoEm <= iso(fim))
       tot[l.categoria] = (tot[l.categoria] || 0) + efetivo(l);
   }
   let ordem = Object.entries(tot).sort((x, y) => y[1] - x[1]);

@@ -14,6 +14,7 @@ import {
   excluir as _excluir, rotuloLanc as rotulo,
   PERIODOS, resolverPeriodo, comparacao, filtraConta as _filtraConta,
   efetivo, soma, serie as _serie, porCategoria as _porCategoria,
+  ehTransferencia,
 } from "./js/data.js";
 import { parseExtrato, parseExtratoPdf, marcarDuplicadas } from "./js/extrato.js";
 import { iniciarBotaoGoogle, clientIdGoogle, definirClientId } from "./js/google.js";
@@ -97,6 +98,15 @@ const SKINS = {
   carnotauro: { rotulo: "Carnotauro", nomeCompleto: "Carnotaurus sastrei", dino: "carno", tile: "#b42318" },
   oxalaia: { rotulo: "Oxalaia", nomeCompleto: "Oxalaia quilombensis", dino: "oxalaia", tile: "#0e7490" },
   braquiossauro: { rotulo: "Braquiossauro", nomeCompleto: "Brachiosaurus altithorax", dino: "braquio", tile: "#15803d" },
+  espinossauro: { rotulo: "Espinossauro", nomeCompleto: "Spinosaurus aegyptiacus", dino: "espino", tile: "#0f766e" },
+  triceratops: { rotulo: "Triceratops", nomeCompleto: "Triceratops horridus", dino: "tricera", tile: "#b45309" },
+  parassaurolofo: { rotulo: "Parassaurolofo", nomeCompleto: "Parasaurolophus walkeri", dino: "parassauro", tile: "#c2410c" },
+  anquilossauro: { rotulo: "Anquilossauro", nomeCompleto: "Ankylosaurus magniventris", dino: "anquilo", tile: "#57534e" },
+  estegossauro: { rotulo: "Estegossauro", nomeCompleto: "Stegosaurus stenops", dino: "estego", tile: "#4d7c0f" },
+  velociraptor: { rotulo: "Velociraptor", nomeCompleto: "Velociraptor mongoliensis", dino: "raptor", tile: "#475569" },
+  paquicefalossauro: { rotulo: "Paquicefalossauro", nomeCompleto: "Pachycephalosaurus wyomingensis", dino: "paqui", tile: "#be185d" },
+  dilofossauro: { rotulo: "Dilofossauro", nomeCompleto: "Dilophosaurus wetherilli", dino: "dilofo", tile: "#7c3aed" },
+  pterossauro: { rotulo: "Pterossauro", nomeCompleto: "Pteranodon longiceps", dino: "ptero", tile: "#0284c7" },
 };
 
 // ficha de cada dinossauro (página Início e tooltips dos seletores de tema)
@@ -132,6 +142,78 @@ const DINO_INFO = {
     desc: "O “lagarto de braços”: dianteiras mais longas que as traseiras e um " +
       "pescoço de guindaste para alcançar as copas das araucárias. Gigante " +
       "gentil e herbívoro — cresce devagar e sempre, como uma boa carteira.",
+  },
+  espinossauro: {
+    periodo: "Cretáceo · 99–93 milhões de anos",
+    onde: "Norte da África (Egito e Marrocos)",
+    porte: "até 15 m · o maior carnívoro conhecido",
+    desc: "O maior dinossauro carnívoro já descoberto — maior que o T. rex, e não " +
+      "deixa ninguém esquecer. A vela de espinhos nas costas e a vocação para a " +
+      "pesca faziam dele o dono dos rios: nada passava sem ser conferido.",
+  },
+  triceratops: {
+    periodo: "Cretáceo Superior · 68–66 milhões de anos",
+    onde: "América do Norte",
+    porte: "~9 m · ~6 toneladas",
+    desc: "Três chifres e um babado de osso para se proteger, mais uma centena de " +
+      "dentes para triturar até a planta mais dura. Defesa em primeiro lugar — " +
+      "o lema de quem também blinda o orçamento.",
+  },
+  parassaurolofo: {
+    periodo: "Cretáceo Superior · 76–73 milhões de anos",
+    onde: "Alberta (Canadá) e Novo México",
+    porte: "~9,5 m · crista de até 1 m",
+    desc: "A crista oca funcionava como uma trombeta: um som alto e grave para " +
+      "avisar o bando de que vinha perigo. O alerta de vencimento original, uns " +
+      "75 milhões de anos antes deste app.",
+  },
+  anquilossauro: {
+    periodo: "Cretáceo Superior · 68–66 milhões de anos",
+    onde: "América do Norte",
+    porte: "~8 m · couraça da cabeça à cauda",
+    desc: "Um tanque herbívoro: armadura de placas ósseas, passo lento e uma clava " +
+      "na ponta da cauda para desencorajar qualquer T. rex. Devagar, blindado e " +
+      "sempre com reserva — o perfil conservador do vale.",
+  },
+  estegossauro: {
+    periodo: "Jurássico Superior · 155–150 milhões de anos",
+    onde: "América do Norte",
+    porte: "~9 m · cérebro do tamanho de uma noz",
+    desc: "Placas nas costas, quatro espinhos na cauda e um cérebro minúsculo — e " +
+      "mesmo assim prosperou por milhões de anos. Não precisa ser gênio para ir " +
+      "longe: basta constância (e alguém anotando tudo).",
+  },
+  velociraptor: {
+    periodo: "Cretáceo Superior · 75–71 milhões de anos",
+    onde: "Deserto de Gobi, Mongólia",
+    porte: "~2 m · 15 kg com penas e tudo",
+    desc: "Pequeno, rápido e feroz, com penas nos braços e uma garra em foice em " +
+      "cada pé. Caçava com estratégia: entra, resolve, sai — basicamente um pix " +
+      "com penas.",
+  },
+  paquicefalossauro: {
+    periodo: "Cretáceo Superior · 70–66 milhões de anos",
+    onde: "América do Norte",
+    porte: "~4,5 m · crânio com 25 cm de osso",
+    desc: "Um capacete ambulante: o topo do crânio tinha até 25 cm de espessura, " +
+      "cercado de nódulos ósseos, para resolver discussões na cabeçada. Cabeça " +
+      "dura no melhor sentido — a que diz “não” ao gasto por impulso.",
+  },
+  dilofossauro: {
+    periodo: "Jurássico Inferior · ~193 milhões de anos",
+    onde: "Arizona, EUA",
+    porte: "~7 m · o grande predador do seu tempo",
+    desc: "Duas cristas em meia-lua, quase dois machados, enfeitavam a cabeça. O " +
+      "cinema inventou o veneno e a gola; as cristas são de verdade — desconfie " +
+      "de taxa escondida, não de fóssil.",
+  },
+  pterossauro: {
+    periodo: "Cretáceo Superior · 86–84 milhões de anos",
+    onde: "céus da América do Norte",
+    porte: "até 7 m de envergadura",
+    desc: "Tecnicamente nem é dinossauro: é um réptil voador, primo de todos eles. " +
+      "Asas de membrana, crista hidrodinâmica e olho afiado lá do alto — a visão " +
+      "geral em pessoa (Pteranodon longiceps, o mais famoso da turma).",
   },
 };
 const skinDe = (perfil) => (perfil && SKINS[perfil.tema] ? perfil.tema : "mono");
@@ -514,6 +596,7 @@ function etiquetas(l) {
   if (l.pTot) t += `<span class="etq">${l.pNum}/${l.pTot}</span>`;
   if (l.origem === "recorrente") t += '<span class="etq">fixa</span>';
   if (l.origem === "extrato") t += '<span class="etq">extrato</span>';
+  if (ehTransferencia(l)) t += '<span class="etq">fora do total</span>';
   if (l.conta === "mei") t += '<span class="etq pj">PJ</span>';
   return t;
 }
@@ -521,9 +604,11 @@ function etiquetas(l) {
 function linhaLanc(l, acoes = true) {
   const venc = deIso(l.venc);
   const vencido = l.status === "pendente" && iso(venc) < iso(hoje());
-  const val = l.tipo === "renda"
-    ? `<b class="val-pos">+${brl(l.valorPago ?? l.valor)}</b>`
-    : `<b class="val-neg">${brl(l.valorPago ?? l.valor)}</b>`;
+  const val = ehTransferencia(l)
+    ? `<b class="val-mut">${brl(l.valorPago ?? l.valor)}</b>`
+    : l.tipo === "renda"
+      ? `<b class="val-pos">+${brl(l.valorPago ?? l.valor)}</b>`
+      : `<b class="val-neg">${brl(l.valorPago ?? l.valor)}</b>`;
   const acao = l.status === "pendente"
     ? `<button class="btn mini" data-acao="pagar" data-id="${l.id}">${l.tipo === "renda" ? "Receber" : "Pagar"}</button>`
     : `<button class="link-btn" data-acao="desfazer" data-id="${l.id}">desfazer</button>`;
@@ -751,7 +836,9 @@ function previaExtrato(nomeArq, ext) {
 <div class="modal-pe">
   <span class="modal-nota">Entram como <b>pagos/recebidos</b> na data do extrato. Linhas com
     <span class="etq padrao">padrão</span> se repetem todo mês no seu histórico; escolha
-    <b>Repete</b> para virar recorrente (sempre, nº de vezes ou até uma data no calendário).</span>
+    <b>Repete</b> para virar recorrente (sempre, nº de vezes ou até uma data no calendário).
+    Categoria <b>Transferência</b> = dinheiro entre suas próprias contas (aplicação, resgate…):
+    entra na lista, mas não conta como gasto nem como ganho.</span>
   <button class="btn primario" id="ext-importar">Importar</button>
 </div>`, "modal-larga");
 
@@ -791,10 +878,12 @@ function previaExtrato(nomeArq, ext) {
 
   const atualizarResumo = () => {
     const sel = linhas.filter(l => l.sel);
-    const desp = soma(sel.filter(l => l.tipo === "despesa").map(l => l.valor));
-    const rend = soma(sel.filter(l => l.tipo === "renda").map(l => l.valor));
+    const desp = soma(sel.filter(l => l.tipo === "despesa" && !ehTransferencia(l)).map(l => l.valor));
+    const rend = soma(sel.filter(l => l.tipo === "renda" && !ehTransferencia(l)).map(l => l.valor));
+    const transfN = sel.filter(ehTransferencia).length;
     $("#ext-resumo", caixa).textContent =
-      `${sel.length} selecionado(s) · saídas ${brl(desp)} · entradas ${brl(rend)}`;
+      `${sel.length} selecionado(s) · saídas ${brl(desp)} · entradas ${brl(rend)}` +
+      (transfN ? ` · ${transfN} transferência(s)` : "");
     $("#ext-importar", caixa).disabled = !sel.length;
   };
 
@@ -803,7 +892,7 @@ function previaExtrato(nomeArq, ext) {
     const chk = alvo.closest("input[type=checkbox]");
     if (chk) { linhas[+chk.dataset.i].sel = chk.checked; atualizarResumo(); return; }
     const cat = alvo.closest("select[data-cat]");
-    if (cat) { linhas[+cat.dataset.cat].categoria = cat.value; return; }
+    if (cat) { linhas[+cat.dataset.cat].categoria = cat.value; atualizarResumo(); return; }
     const rep = alvo.closest("select[data-rep]");
     if (rep) {
       const i = +rep.dataset.rep, l = linhas[i];
@@ -1017,8 +1106,9 @@ function paginaInicio() {
   const compAtual = compDe(h);
   const fimMes = iso(new Date(h.getFullYear(), h.getMonth(), fimDoMes(h.getFullYear(), h.getMonth())));
   const pagoMes = soma(DB.lancs.filter(l => l.status === "pago" && l.tipo === "despesa"
-    && filtraConta(l) && l.pagoEm && l.pagoEm.slice(0, 7) === compAtual).map(efetivo));
-  const pend = DB.lancs.filter(l => l.status === "pendente" && filtraConta(l) && l.venc <= fimMes);
+    && filtraConta(l) && !ehTransferencia(l) && l.pagoEm && l.pagoEm.slice(0, 7) === compAtual).map(efetivo));
+  const pend = DB.lancs.filter(l => l.status === "pendente" && filtraConta(l)
+    && !ehTransferencia(l) && l.venc <= fimMes);
   const aPagar = soma(pend.filter(l => l.tipo === "despesa").map(l => l.valor));
   const aReceber = soma(pend.filter(l => l.tipo === "renda").map(l => l.valor));
   const skAtiva = skinDe(PERFIL);
@@ -1088,13 +1178,14 @@ function paginaHome() {
   for (let i = 0; i < nDias; i++) labelsMes.push(ddmm(addDias(mIni, i)));
 
   const gastoHoje = soma(DB.lancs.filter(l => l.status === "pago" && l.pagoEm === iso(h)
-    && l.tipo === "despesa" && filtraConta(l)).map(efetivo));
+    && l.tipo === "despesa" && filtraConta(l) && !ehTransferencia(l)).map(efetivo));
   const ontem = addDias(h, -1);
   const gastoOntem = soma(DB.lancs.filter(l => l.status === "pago" && l.pagoEm === iso(ontem)
-    && l.tipo === "despesa" && filtraConta(l)).map(efetivo));
+    && l.tipo === "despesa" && filtraConta(l) && !ehTransferencia(l)).map(efetivo));
 
   const fimMesIso = iso(mFim);
-  const pend = DB.lancs.filter(l => l.status === "pendente" && filtraConta(l) && l.venc <= fimMesIso);
+  const pend = DB.lancs.filter(l => l.status === "pendente" && filtraConta(l)
+    && !ehTransferencia(l) && l.venc <= fimMesIso);
   const aPagar = soma(pend.filter(l => l.tipo === "despesa").map(l => l.valor));
   const aReceber = soma(pend.filter(l => l.tipo === "renda").map(l => l.valor));
   const nVencidas = pend.filter(l => l.tipo === "despesa" && l.venc < iso(h)).length;
@@ -1150,14 +1241,14 @@ ${cabecalhoFiltros()}
 
 <div class="grade3">
   <div class="cartao">
-    <span class="rotulo">Entradas <i class="info" title="rendimentos recebidos no período">ⓘ</i></span>
+    <span class="rotulo">Entradas <i class="info" title="rendimentos recebidos no período — transferências entre suas contas ficam de fora">ⓘ</i></span>
     <div class="linha-grande"><span class="grande">${brl(tE)}</span>${deltaHtml(tE, tEC, true)}</div>
     <div class="anterior">${brl(tEC)} · ${cmp.rotulo}</div>
     ${chartSVG(labelsP, entA, entC)}
     <div class="cartao-pe"><span>Atualizado agora</span><a href="#/rendimentos">Mais detalhes</a></div>
   </div>
   <div class="cartao">
-    <span class="rotulo">Saídas <i class="info" title="despesas pagas no período">ⓘ</i></span>
+    <span class="rotulo">Saídas <i class="info" title="despesas pagas no período — transferências entre suas contas ficam de fora">ⓘ</i></span>
     <div class="linha-grande"><span class="grande">${brl(tS)}</span>${deltaHtml(tS, tSC, false)}</div>
     <div class="anterior">${brl(tSC)} · ${cmp.rotulo}</div>
     ${chartSVG(labelsP, saiA, saiC)}
@@ -1283,8 +1374,11 @@ function paginaLancs(tipo) {
       || (x.venc < y.venc ? -1 : 1));
   const pendN = itens.filter(l => l.status === "pendente").length;
   const pagasN = itens.length - pendN;
-  const total = soma(itens.map(efetivo));
-  const fatias = fatiasStatus(itens);
+  // transferências entre contas próprias ficam na lista, mas fora do donut e do total
+  const contaveis = itens.filter(l => !ehTransferencia(l));
+  const transfN = itens.length - contaveis.length;
+  const total = soma(contaveis.map(efetivo));
+  const fatias = fatiasStatus(contaveis);
 
   return `
 <h1 class="secao">${titulo}
@@ -1296,7 +1390,7 @@ function paginaLancs(tipo) {
     <button class="btn mini seta" data-mes="1" title="mês seguinte">›</button>
     ${noAtual ? "" : '<button class="link-btn" data-mes="0">voltar ao mês atual</button>'}
   </div>
-  <span class="controle"><span>${itens.length} lançamento(s) · ${pendN} em aberto</span></span>
+  <span class="controle"><span>${itens.length} lançamento(s) · ${pendN} em aberto${transfN ? ` · ${transfN} transferência(s) fora do total` : ""}</span></span>
   <span class="espaco"></span>
   <button class="btn mini" id="btn-importacao">Importação</button>
   <button class="btn primario add" data-form="${tipo}">+ ${tipo === "renda" ? "Rendimento" : "Despesa"}</button>

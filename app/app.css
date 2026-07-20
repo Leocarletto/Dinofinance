@@ -350,7 +350,7 @@ a { color: var(--ink); }
   color: var(--mut2);
   padding: 0 9px 6px;
 }
-.menu-temas { display: flex; gap: 9px; padding: 0 9px 6px; }
+.menu-temas { display: flex; flex-wrap: wrap; gap: 9px; padding: 0 9px 6px; }
 .menu-tema {
   width: 36px;
   height: 36px;
@@ -1631,6 +1631,128 @@ input[type="date"] { cursor: pointer; }
   --track: #e0eeda;
   --campo-borda: #d3e6cc;
 }
+/* espinossauro = rio largo e lamacento · triceratops = savana dourada ·
+   parassaurolofo = cânion ao pôr do sol · anquilossauro = campo de pedra ·
+   estegossauro = samambaias ao sol · velociraptor = Gobi ao anoitecer ·
+   paquicefalossauro = floresta em flor · dilofossauro = crepúsculo violeta ·
+   pterossauro = céu aberto */
+:root[data-skin="espinossauro"] {
+  --accent: #0f766e;
+  --accent-inv: #ffffff;
+  --anel: rgba(15, 118, 110, 0.20);
+  --area: rgba(15, 118, 110, 0.07);
+  --bg: #f1f9f7;
+  --card: #fafffd;
+  --hairline: #ddefeb;
+  --linha-fina: #e8f4f1;
+  --tile: #e6f2ef;
+  --track: #dbece7;
+  --campo-borda: #cde4de;
+}
+:root[data-skin="triceratops"] {
+  --accent: #b45309;
+  --accent-inv: #ffffff;
+  --anel: rgba(180, 83, 9, 0.20);
+  --area: rgba(180, 83, 9, 0.07);
+  --bg: #faf6f0;
+  --card: #fffdf9;
+  --hairline: #f0e5d6;
+  --linha-fina: #f5ecdf;
+  --tile: #f6eee2;
+  --track: #efe3d0;
+  --campo-borda: #e7d7bd;
+}
+:root[data-skin="parassaurolofo"] {
+  --accent: #c2410c;
+  --accent-inv: #ffffff;
+  --anel: rgba(194, 65, 12, 0.20);
+  --area: rgba(194, 65, 12, 0.07);
+  --bg: #faf5f0;
+  --card: #fffdfa;
+  --hairline: #f2e4d9;
+  --linha-fina: #f6ebe2;
+  --tile: #f6ece3;
+  --track: #f0e0d3;
+  --campo-borda: #e8d2c0;
+}
+:root[data-skin="anquilossauro"] {
+  --accent: #57534e;
+  --accent-inv: #ffffff;
+  --anel: rgba(87, 83, 78, 0.20);
+  --area: rgba(87, 83, 78, 0.07);
+  --bg: #f7f6f4;
+  --card: #fdfcfb;
+  --hairline: #e9e6e2;
+  --linha-fina: #efedea;
+  --tile: #efece8;
+  --track: #e6e2dd;
+  --campo-borda: #d9d4cd;
+}
+:root[data-skin="estegossauro"] {
+  --accent: #4d7c0f;
+  --accent-inv: #ffffff;
+  --anel: rgba(77, 124, 15, 0.20);
+  --area: rgba(77, 124, 15, 0.07);
+  --bg: #f6f9f0;
+  --card: #fdfff8;
+  --hairline: #e7efd8;
+  --linha-fina: #eff5e3;
+  --tile: #eef4e2;
+  --track: #e4edd2;
+  --campo-borda: #d7e5bd;
+}
+:root[data-skin="velociraptor"] {
+  --accent: #475569;
+  --accent-inv: #ffffff;
+  --anel: rgba(71, 85, 105, 0.20);
+  --area: rgba(71, 85, 105, 0.07);
+  --bg: #f4f6f9;
+  --card: #fbfcfe;
+  --hairline: #e2e7ee;
+  --linha-fina: #ebeff4;
+  --tile: #eaeef3;
+  --track: #dfe5ec;
+  --campo-borda: #d0d9e3;
+}
+:root[data-skin="paquicefalossauro"] {
+  --accent: #be185d;
+  --accent-inv: #ffffff;
+  --anel: rgba(190, 24, 93, 0.20);
+  --area: rgba(190, 24, 93, 0.07);
+  --bg: #faf0f5;
+  --card: #fffbfd;
+  --hairline: #f2dbe7;
+  --linha-fina: #f6e5ee;
+  --tile: #f6e4ed;
+  --track: #f0d7e4;
+  --campo-borda: #e8c6d8;
+}
+:root[data-skin="dilofossauro"] {
+  --accent: #7c3aed;
+  --accent-inv: #ffffff;
+  --anel: rgba(124, 58, 237, 0.20);
+  --area: rgba(124, 58, 237, 0.07);
+  --bg: #f6f4fb;
+  --card: #fdfcff;
+  --hairline: #e8e2f4;
+  --linha-fina: #efeaf8;
+  --tile: #eee9f7;
+  --track: #e4dcf1;
+  --campo-borda: #d7cce9;
+}
+:root[data-skin="pterossauro"] {
+  --accent: #0284c7;
+  --accent-inv: #ffffff;
+  --anel: rgba(2, 132, 199, 0.20);
+  --area: rgba(2, 132, 199, 0.07);
+  --bg: #f0f7fb;
+  --card: #fafdff;
+  --hairline: #dcecf4;
+  --linha-fina: #e7f1f7;
+  --tile: #e5f0f6;
+  --track: #daeaf2;
+  --campo-borda: #cbe1ec;
+}
 @media (prefers-color-scheme: dark) {
   :root[data-skin="carnotauro"]:not([data-tema="claro"]) {
     --accent: #f97066;
@@ -1671,6 +1793,123 @@ input[type="date"] { cursor: pointer; }
     --track: #1a2c13;
     --campo-borda: #223818;
   }
+  :root[data-skin="espinossauro"]:not([data-tema="claro"]) {
+    --accent: #2dd4bf;
+    --accent-inv: #042f2a;
+    --anel: rgba(45, 212, 191, 0.28);
+    --area: rgba(45, 212, 191, 0.10);
+    --bg: #030b0a;
+    --card: #071512;
+    --hairline: #102924;
+    --linha-fina: #0c211d;
+    --tile: #0d231f;
+    --track: #122e29;
+    --campo-borda: #173b34;
+  }
+  :root[data-skin="triceratops"]:not([data-tema="claro"]) {
+    --accent: #fbbf24;
+    --accent-inv: #2a1703;
+    --anel: rgba(251, 191, 36, 0.28);
+    --area: rgba(251, 191, 36, 0.10);
+    --bg: #0b0703;
+    --card: #151006;
+    --hairline: #2b2110;
+    --linha-fina: #231a0c;
+    --tile: #211a0d;
+    --track: #2e2412;
+    --campo-borda: #3a2e17;
+  }
+  :root[data-skin="parassaurolofo"]:not([data-tema="claro"]) {
+    --accent: #fb923c;
+    --accent-inv: #2b1204;
+    --anel: rgba(251, 146, 60, 0.28);
+    --area: rgba(251, 146, 60, 0.10);
+    --bg: #0b0603;
+    --card: #150c06;
+    --hairline: #2b1a10;
+    --linha-fina: #23150c;
+    --tile: #21140c;
+    --track: #2e1d12;
+    --campo-borda: #3a2617;
+  }
+  :root[data-skin="anquilossauro"]:not([data-tema="claro"]) {
+    --accent: #a8a29e;
+    --accent-inv: #171512;
+    --anel: rgba(168, 162, 158, 0.28);
+    --area: rgba(168, 162, 158, 0.10);
+    --bg: #080706;
+    --card: #12100e;
+    --hairline: #262320;
+    --linha-fina: #1e1c19;
+    --tile: #1e1b18;
+    --track: #2a2724;
+    --campo-borda: #363229;
+  }
+  :root[data-skin="estegossauro"]:not([data-tema="claro"]) {
+    --accent: #a3e635;
+    --accent-inv: #1a2604;
+    --anel: rgba(163, 230, 53, 0.28);
+    --area: rgba(163, 230, 53, 0.10);
+    --bg: #070902;
+    --card: #101505;
+    --hairline: #232b10;
+    --linha-fina: #1b230c;
+    --tile: #1b210d;
+    --track: #262e12;
+    --campo-borda: #303a17;
+  }
+  :root[data-skin="velociraptor"]:not([data-tema="claro"]) {
+    --accent: #94a3b8;
+    --accent-inv: #0f141b;
+    --anel: rgba(148, 163, 184, 0.28);
+    --area: rgba(148, 163, 184, 0.10);
+    --bg: #060809;
+    --card: #0e1215;
+    --hairline: #1f262c;
+    --linha-fina: #181e23;
+    --tile: #181d22;
+    --track: #22292f;
+    --campo-borda: #2c353d;
+  }
+  :root[data-skin="paquicefalossauro"]:not([data-tema="claro"]) {
+    --accent: #f472b6;
+    --accent-inv: #310318;
+    --anel: rgba(244, 114, 182, 0.28);
+    --area: rgba(244, 114, 182, 0.10);
+    --bg: #0b0307;
+    --card: #150710;
+    --hairline: #2b1020;
+    --linha-fina: #230c19;
+    --tile: #210d18;
+    --track: #2e1222;
+    --campo-borda: #3a172c;
+  }
+  :root[data-skin="dilofossauro"]:not([data-tema="claro"]) {
+    --accent: #a78bfa;
+    --accent-inv: #1e1046;
+    --anel: rgba(167, 139, 250, 0.28);
+    --area: rgba(167, 139, 250, 0.10);
+    --bg: #070511;
+    --card: #0f0a1d;
+    --hairline: #211835;
+    --linha-fina: #19122a;
+    --tile: #1a1229;
+    --track: #251c3a;
+    --campo-borda: #302547;
+  }
+  :root[data-skin="pterossauro"]:not([data-tema="claro"]) {
+    --accent: #38bdf8;
+    --accent-inv: #082635;
+    --anel: rgba(56, 189, 248, 0.28);
+    --area: rgba(56, 189, 248, 0.10);
+    --bg: #030a0e;
+    --card: #071319;
+    --hairline: #10262f;
+    --linha-fina: #0c1e26;
+    --tile: #0d1f27;
+    --track: #122a34;
+    --campo-borda: #173642;
+  }
 }
 :root[data-skin="carnotauro"][data-tema="escuro"] {
   --accent: #f97066;
@@ -1710,6 +1949,123 @@ input[type="date"] { cursor: pointer; }
   --tile: #14200f;
   --track: #1a2c13;
   --campo-borda: #223818;
+}
+:root[data-skin="espinossauro"][data-tema="escuro"] {
+  --accent: #2dd4bf;
+  --accent-inv: #042f2a;
+  --anel: rgba(45, 212, 191, 0.28);
+  --area: rgba(45, 212, 191, 0.10);
+  --bg: #030b0a;
+  --card: #071512;
+  --hairline: #102924;
+  --linha-fina: #0c211d;
+  --tile: #0d231f;
+  --track: #122e29;
+  --campo-borda: #173b34;
+}
+:root[data-skin="triceratops"][data-tema="escuro"] {
+  --accent: #fbbf24;
+  --accent-inv: #2a1703;
+  --anel: rgba(251, 191, 36, 0.28);
+  --area: rgba(251, 191, 36, 0.10);
+  --bg: #0b0703;
+  --card: #151006;
+  --hairline: #2b2110;
+  --linha-fina: #231a0c;
+  --tile: #211a0d;
+  --track: #2e2412;
+  --campo-borda: #3a2e17;
+}
+:root[data-skin="parassaurolofo"][data-tema="escuro"] {
+  --accent: #fb923c;
+  --accent-inv: #2b1204;
+  --anel: rgba(251, 146, 60, 0.28);
+  --area: rgba(251, 146, 60, 0.10);
+  --bg: #0b0603;
+  --card: #150c06;
+  --hairline: #2b1a10;
+  --linha-fina: #23150c;
+  --tile: #21140c;
+  --track: #2e1d12;
+  --campo-borda: #3a2617;
+}
+:root[data-skin="anquilossauro"][data-tema="escuro"] {
+  --accent: #a8a29e;
+  --accent-inv: #171512;
+  --anel: rgba(168, 162, 158, 0.28);
+  --area: rgba(168, 162, 158, 0.10);
+  --bg: #080706;
+  --card: #12100e;
+  --hairline: #262320;
+  --linha-fina: #1e1c19;
+  --tile: #1e1b18;
+  --track: #2a2724;
+  --campo-borda: #363229;
+}
+:root[data-skin="estegossauro"][data-tema="escuro"] {
+  --accent: #a3e635;
+  --accent-inv: #1a2604;
+  --anel: rgba(163, 230, 53, 0.28);
+  --area: rgba(163, 230, 53, 0.10);
+  --bg: #070902;
+  --card: #101505;
+  --hairline: #232b10;
+  --linha-fina: #1b230c;
+  --tile: #1b210d;
+  --track: #262e12;
+  --campo-borda: #303a17;
+}
+:root[data-skin="velociraptor"][data-tema="escuro"] {
+  --accent: #94a3b8;
+  --accent-inv: #0f141b;
+  --anel: rgba(148, 163, 184, 0.28);
+  --area: rgba(148, 163, 184, 0.10);
+  --bg: #060809;
+  --card: #0e1215;
+  --hairline: #1f262c;
+  --linha-fina: #181e23;
+  --tile: #181d22;
+  --track: #22292f;
+  --campo-borda: #2c353d;
+}
+:root[data-skin="paquicefalossauro"][data-tema="escuro"] {
+  --accent: #f472b6;
+  --accent-inv: #310318;
+  --anel: rgba(244, 114, 182, 0.28);
+  --area: rgba(244, 114, 182, 0.10);
+  --bg: #0b0307;
+  --card: #150710;
+  --hairline: #2b1020;
+  --linha-fina: #230c19;
+  --tile: #210d18;
+  --track: #2e1222;
+  --campo-borda: #3a172c;
+}
+:root[data-skin="dilofossauro"][data-tema="escuro"] {
+  --accent: #a78bfa;
+  --accent-inv: #1e1046;
+  --anel: rgba(167, 139, 250, 0.28);
+  --area: rgba(167, 139, 250, 0.10);
+  --bg: #070511;
+  --card: #0f0a1d;
+  --hairline: #211835;
+  --linha-fina: #19122a;
+  --tile: #1a1229;
+  --track: #251c3a;
+  --campo-borda: #302547;
+}
+:root[data-skin="pterossauro"][data-tema="escuro"] {
+  --accent: #38bdf8;
+  --accent-inv: #082635;
+  --anel: rgba(56, 189, 248, 0.28);
+  --area: rgba(56, 189, 248, 0.10);
+  --bg: #030a0e;
+  --card: #071319;
+  --hairline: #10262f;
+  --linha-fina: #0c1e26;
+  --tile: #0d1f27;
+  --track: #122a34;
+  --campo-borda: #173642;
 }
 
 /* ---------- cenário do habitat no rodapé do app (atrás do conteúdo) ---------- */

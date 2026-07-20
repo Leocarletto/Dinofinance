@@ -30,16 +30,16 @@
         <ellipse cx="320" cy="204" rx="50" ry="38" transform="rotate(-38 320 204)"/>
         <ellipse cx="334" cy="262" rx="16" ry="7" transform="rotate(32 334 262)"/>
         <ellipse cx="352" cy="250" rx="12" ry="6" transform="rotate(40 352 250)"/>
-        <rect x="336" y="92" width="142" height="96" rx="30"/>
-        <ellipse cx="374" cy="94" rx="28" ry="13"/>
+        <rect x="336" y="92" width="142" height="96" rx="30" transform="rotate(-8 340 150)"/>
+        <ellipse cx="374" cy="94" rx="28" ry="13" transform="rotate(-8 340 150)"/>
         <ellipse cx="296" cy="308" rx="42" ry="56" transform="rotate(-12 296 308)"/>
         <path d="M 280 338 C 284 360, 282 374, 276 386 L 310 386 C 306 368, 308 352, 314 336 Z"/>
         <rect x="266" y="372" width="86" height="20" rx="10"/>
       </g>
       <g id="olho-trex" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
-        <circle cx="418" cy="126" r="12"/>
-        <circle cx="464" cy="114" r="5"/>
-        <rect x="398" y="158" width="84" height="16" rx="8"/>
+        <circle cx="418" cy="126" r="12" transform="rotate(-8 340 150)"/>
+        <circle cx="464" cy="114" r="5" transform="rotate(-8 340 150)"/>
+        <rect x="398" y="158" width="84" height="16" rx="8" transform="rotate(-8 340 150)"/>
       </g>
     </g>
 
@@ -107,6 +107,217 @@
       <g id="olho-braquio" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
         <circle cx="398" cy="66" r="6"/>
         <rect x="398" y="82" width="34" height="8" rx="4" transform="rotate(12 398 82)"/>
+      </g>
+    </g>
+
+    <!-- ESPINOSSAURO: vela serrilhada + focinho de crocodilo (o maior carnívoro) -->
+    <g id="dino-espino">
+      <rect width="512" height="512" rx="115" style="fill:var(--accent,#0a0a0a)"/>
+      <g id="corpo-espino" style="fill:var(--dino-corpo,var(--accent-inv,#ffffff))">
+        <path d="M 136 300 L 160 208 L 184 288 L 210 190 L 236 286 L 262 184 L 288 288 L 314 200 L 338 300 Z"/>
+        <path d="M 138 288 C 98 288, 66 276, 46 258 C 42 264, 42 272, 46 278 C 70 302, 104 320, 142 334 Z"/>
+        <ellipse cx="240" cy="310" rx="114" ry="54"/>
+        <path d="M 192 340 C 194 360, 192 374, 187 386 L 218 386 C 216 368, 218 352, 224 338 Z"/>
+        <rect x="164" y="372" width="72" height="20" rx="10"/>
+        <path d="M 286 342 C 290 362, 288 376, 282 388 L 314 388 C 310 370, 312 354, 318 340 Z"/>
+        <rect x="266" y="374" width="80" height="20" rx="10"/>
+        <ellipse cx="332" cy="262" rx="50" ry="32" transform="rotate(-32 332 262)"/>
+        <ellipse cx="376" cy="226" rx="34" ry="26"/>
+        <rect x="368" y="206" width="122" height="20" rx="10" transform="rotate(5 368 206)"/>
+        <rect x="368" y="232" width="100" height="14" rx="7" transform="rotate(12 368 232)"/>
+        <ellipse cx="330" cy="322" rx="20" ry="9" transform="rotate(34 330 322)"/>
+      </g>
+      <g id="olho-espino" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
+        <circle cx="380" cy="212" r="9"/>
+        <circle cx="468" cy="218" r="3.6"/>
+      </g>
+    </g>
+
+    <!-- TRICERATOPS: babado, três chifres e bico (uma centena de dentes lá dentro) -->
+    <g id="dino-tricera">
+      <rect width="512" height="512" rx="115" style="fill:var(--accent,#0a0a0a)"/>
+      <g id="corpo-tricera" style="fill:var(--dino-corpo,var(--accent-inv,#ffffff))">
+        <path d="M 148 296 C 112 296, 84 288, 62 272 C 57 278, 57 286, 62 292 C 86 312, 116 326, 152 336 Z"/>
+        <ellipse cx="238" cy="310" rx="116" ry="60"/>
+        <rect x="152" y="336" width="34" height="60" rx="15"/>
+        <rect x="204" y="346" width="34" height="52" rx="15"/>
+        <rect x="266" y="346" width="34" height="52" rx="15"/>
+        <rect x="316" y="336" width="34" height="60" rx="15"/>
+        <ellipse cx="350" cy="230" rx="52" ry="58"/>
+        <ellipse cx="398" cy="258" rx="50" ry="36" transform="rotate(-16 398 258)"/>
+        <path d="M 436 272 L 484 288 L 440 304 Z"/>
+        <path d="M 378 214 C 374 182, 380 152, 394 128 L 406 136 C 396 160, 392 186, 396 212 Z"/>
+        <path d="M 412 222 C 414 192, 424 166, 440 146 L 450 156 C 438 176, 432 200, 430 226 Z"/>
+        <path d="M 436 244 L 456 224 L 460 250 Z"/>
+      </g>
+      <g id="olho-tricera" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
+        <circle cx="406" cy="248" r="9"/>
+        <rect x="424" y="286" width="44" height="10" rx="5" transform="rotate(12 424 286)"/>
+      </g>
+    </g>
+
+    <!-- PARASSAUROLOFO: crista tubular para trás + bico de pato (a trombeta do bando) -->
+    <g id="dino-parassauro">
+      <rect width="512" height="512" rx="115" style="fill:var(--accent,#0a0a0a)"/>
+      <g id="corpo-parassauro" style="fill:var(--dino-corpo,var(--accent-inv,#ffffff))">
+        <path d="M 196 248 C 134 254, 86 246, 52 228 C 46 234, 46 242, 51 248 C 84 278, 132 302, 190 318 Z"/>
+        <ellipse cx="206" cy="312" rx="40" ry="54" transform="rotate(8 206 312)"/>
+        <path d="M 192 342 C 194 362, 192 376, 187 388 L 220 388 C 218 370, 220 354, 226 340 Z"/>
+        <rect x="162" y="374" width="76" height="20" rx="10"/>
+        <ellipse cx="256" cy="272" rx="94" ry="62" transform="rotate(-14 256 272)"/>
+        <ellipse cx="296" cy="310" rx="40" ry="54" transform="rotate(-12 296 310)"/>
+        <path d="M 280 340 C 284 362, 282 376, 276 388 L 310 388 C 306 370, 308 354, 314 338 Z"/>
+        <rect x="266" y="374" width="84" height="20" rx="10"/>
+        <ellipse cx="328" cy="262" rx="17" ry="7" transform="rotate(32 328 262)"/>
+        <ellipse cx="338" cy="198" rx="46" ry="36" transform="rotate(-40 338 198)"/>
+        <ellipse cx="388" cy="154" rx="38" ry="27"/>
+        <rect x="398" y="148" width="84" height="22" rx="11"/>
+        <path d="M 374 136 C 348 108, 314 92, 276 88 L 272 110 C 306 114, 336 130, 360 152 Z"/>
+      </g>
+      <g id="olho-parassauro" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
+        <circle cx="394" cy="144" r="9"/>
+        <rect x="420" y="160" width="54" height="9" rx="4.5"/>
+      </g>
+    </g>
+
+    <!-- ANQUILOSSAURO: couraça de nódulos + clava na cauda (o tanque do Cretáceo) -->
+    <g id="dino-anquilo">
+      <rect width="512" height="512" rx="115" style="fill:var(--accent,#0a0a0a)"/>
+      <g id="corpo-anquilo" style="fill:var(--dino-corpo,var(--accent-inv,#ffffff))">
+        <circle cx="64" cy="284" r="26"/>
+        <path d="M 148 318 C 116 314, 90 306, 70 294 L 60 310 C 84 326, 114 336, 150 342 Z"/>
+        <path d="M 128 314 Q 256 214 384 314 Z"/>
+        <ellipse cx="256" cy="318" rx="138" ry="56"/>
+        <rect x="150" y="344" width="34" height="50" rx="15"/>
+        <rect x="212" y="352" width="34" height="44" rx="15"/>
+        <rect x="284" y="352" width="34" height="44" rx="15"/>
+        <rect x="340" y="344" width="34" height="50" rx="15"/>
+        <ellipse cx="406" cy="292" rx="42" ry="28"/>
+        <path d="M 396 268 L 386 250 L 406 258 Z"/>
+        <path d="M 428 272 L 440 256 L 444 274 Z"/>
+      </g>
+      <g id="olho-anquilo" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
+        <circle cx="416" cy="286" r="9"/>
+        <rect x="430" y="302" width="34" height="9" rx="4.5"/>
+        <circle cx="178" cy="298" r="10"/><circle cx="228" cy="274" r="10"/>
+        <circle cx="280" cy="268" r="10"/><circle cx="330" cy="286" r="10"/>
+        <circle cx="204" cy="326" r="8"/><circle cx="256" cy="312" r="8"/><circle cx="308" cy="320" r="8"/>
+      </g>
+    </g>
+
+    <!-- ESTEGOSSAURO: placas dorsais + espinhos na cauda (cérebro de noz, coração enorme) -->
+    <g id="dino-estego">
+      <rect width="512" height="512" rx="115" style="fill:var(--accent,#0a0a0a)"/>
+      <g id="corpo-estego" style="fill:var(--dino-corpo,var(--accent-inv,#ffffff))">
+        <path d="M 148 272 L 170 218 L 192 272 Z"/>
+        <path d="M 202 258 L 230 194 L 258 258 Z"/>
+        <path d="M 266 256 L 294 196 L 322 256 Z"/>
+        <path d="M 330 268 L 352 218 L 374 268 Z"/>
+        <path d="M 146 300 C 112 286, 86 266, 66 240 L 54 254 C 74 286, 102 312, 138 330 Z"/>
+        <path d="M 78 248 L 56 210 L 90 232 Z"/>
+        <path d="M 102 266 L 90 226 L 120 252 Z"/>
+        <ellipse cx="250" cy="314" rx="120" ry="60"/>
+        <rect x="166" y="338" width="34" height="56" rx="15"/>
+        <rect x="230" y="346" width="34" height="50" rx="15"/>
+        <rect x="298" y="346" width="34" height="50" rx="15"/>
+        <rect x="342" y="338" width="32" height="56" rx="15"/>
+        <ellipse cx="398" cy="314" rx="42" ry="25" transform="rotate(12 398 314)"/>
+      </g>
+      <g id="olho-estego" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
+        <circle cx="412" cy="308" r="8"/>
+        <rect x="424" y="326" width="38" height="9" rx="4.5" transform="rotate(12 424 326)"/>
+      </g>
+    </g>
+
+    <!-- VELOCIRAPTOR: pequeno, veloz, penas nos braços e garra em foice -->
+    <g id="dino-raptor">
+      <rect width="512" height="512" rx="115" style="fill:var(--accent,#0a0a0a)"/>
+      <g id="corpo-raptor" style="fill:var(--dino-corpo,var(--accent-inv,#ffffff))">
+        <path d="M 196 272 C 148 260, 100 254, 48 258 L 48 278 C 98 276, 144 282, 190 294 Z"/>
+        <ellipse cx="248" cy="290" rx="78" ry="42" transform="rotate(-10 248 290)"/>
+        <ellipse cx="226" cy="316" rx="30" ry="40" transform="rotate(10 226 316)"/>
+        <path d="M 216 340 C 218 358, 216 370, 212 380 L 240 380 C 238 366, 240 352, 244 340 Z"/>
+        <rect x="192" y="366" width="62" height="18" rx="9"/>
+        <path d="M 236 372 L 250 348 L 260 372 Z"/>
+        <ellipse cx="284" cy="312" rx="28" ry="38" transform="rotate(-12 284 312)"/>
+        <path d="M 274 338 C 276 356, 274 368, 270 378 L 298 378 C 295 364, 297 352, 301 338 Z"/>
+        <rect x="252" y="364" width="64" height="18" rx="9"/>
+        <path d="M 298 284 L 344 298 L 336 308 L 322 302 L 326 314 L 308 306 L 312 318 L 294 310 Z"/>
+        <ellipse cx="320" cy="246" rx="40" ry="25" transform="rotate(-34 320 246)"/>
+        <ellipse cx="360" cy="218" rx="29" ry="20"/>
+        <rect x="364" y="210" width="68" height="15" rx="7.5" transform="rotate(6 364 210)"/>
+      </g>
+      <g id="olho-raptor" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
+        <circle cx="366" cy="212" r="7"/>
+        <circle cx="426" cy="220" r="3"/>
+      </g>
+    </g>
+
+    <!-- PAQUICEFALOSSAURO: domo de 25 cm de osso puro + nódulos ao redor -->
+    <g id="dino-paqui">
+      <rect width="512" height="512" rx="115" style="fill:var(--accent,#0a0a0a)"/>
+      <g id="corpo-paqui" style="fill:var(--dino-corpo,var(--accent-inv,#ffffff))">
+        <path d="M 196 252 C 136 258, 88 250, 54 232 C 48 238, 48 246, 53 252 C 86 282, 132 304, 190 320 Z"/>
+        <ellipse cx="210" cy="312" rx="38" ry="52" transform="rotate(8 210 312)"/>
+        <path d="M 196 342 C 198 362, 196 376, 191 388 L 222 388 C 220 370, 222 354, 228 340 Z"/>
+        <rect x="166" y="374" width="72" height="20" rx="10"/>
+        <ellipse cx="254" cy="270" rx="88" ry="58" transform="rotate(-14 254 270)"/>
+        <ellipse cx="292" cy="308" rx="38" ry="52" transform="rotate(-12 292 308)"/>
+        <path d="M 278 338 C 282 360, 280 374, 274 386 L 306 386 C 302 368, 304 352, 310 336 Z"/>
+        <rect x="262" y="372" width="80" height="20" rx="10"/>
+        <ellipse cx="322" cy="258" rx="16" ry="7" transform="rotate(32 322 258)"/>
+        <ellipse cx="332" cy="204" rx="42" ry="30" transform="rotate(-38 332 204)"/>
+        <circle cx="386" cy="166" r="30"/>
+        <path d="M 346 162 A 41 44 0 0 1 428 156 L 428 170 L 346 170 Z"/>
+        <circle cx="352" cy="152" r="8"/><circle cx="362" cy="136" r="8"/><circle cx="382" cy="125" r="8"/>
+        <circle cx="404" cy="123" r="8"/><circle cx="421" cy="132" r="8"/>
+        <ellipse cx="420" cy="184" rx="26" ry="16"/>
+      </g>
+      <g id="olho-paqui" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
+        <circle cx="402" cy="172" r="8"/>
+        <rect x="430" y="194" width="32" height="8" rx="4"/>
+      </g>
+    </g>
+
+    <!-- DILOFOSSAURO: par de cristas em meia-lua no alto da cabeça -->
+    <g id="dino-dilofo">
+      <rect width="512" height="512" rx="115" style="fill:var(--accent,#0a0a0a)"/>
+      <g id="corpo-dilofo" style="fill:var(--dino-corpo,var(--accent-inv,#ffffff))">
+        <path d="M 198 240 C 138 246, 90 238, 56 220 C 50 226, 50 234, 55 240 C 88 270, 136 294, 192 310 Z"/>
+        <ellipse cx="210" cy="306" rx="38" ry="52" transform="rotate(8 210 306)"/>
+        <path d="M 196 336 C 198 356, 196 370, 191 382 L 222 382 C 220 364, 222 348, 228 336 Z"/>
+        <rect x="166" y="368" width="72" height="20" rx="10"/>
+        <ellipse cx="252" cy="264" rx="86" ry="54" transform="rotate(-14 252 264)"/>
+        <ellipse cx="290" cy="304" rx="38" ry="52" transform="rotate(-12 290 304)"/>
+        <path d="M 276 334 C 280 356, 278 370, 272 382 L 304 382 C 300 364, 302 348, 308 334 Z"/>
+        <rect x="260" y="368" width="80" height="20" rx="10"/>
+        <ellipse cx="318" cy="254" rx="18" ry="7" transform="rotate(32 318 254)"/>
+        <ellipse cx="324" cy="196" rx="44" ry="32" transform="rotate(-40 324 196)"/>
+        <rect x="338" y="120" width="118" height="72" rx="24"/>
+        <path d="M 346 128 Q 352 84 388 76 L 394 98 Q 368 104 366 128 Z"/>
+        <path d="M 398 124 Q 404 78 442 70 L 448 92 Q 420 98 418 124 Z"/>
+      </g>
+      <g id="olho-dilofo" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
+        <circle cx="408" cy="150" r="10"/>
+        <circle cx="446" cy="140" r="4"/>
+        <rect x="392" y="170" width="66" height="13" rx="6.5"/>
+      </g>
+    </g>
+
+    <!-- PTEROSSAURO: réptil voador — asas de membrana + crista do Pteranodon -->
+    <g id="dino-ptero">
+      <rect width="512" height="512" rx="115" style="fill:var(--accent,#0a0a0a)"/>
+      <g id="corpo-ptero" style="fill:var(--dino-corpo,var(--accent-inv,#ffffff))">
+        <path d="M 236 250 L 158 214 L 66 142 C 58 150, 56 160, 62 170 L 146 236 L 214 288 Z"/>
+        <path d="M 292 286 L 356 296 L 442 356 C 450 348, 452 338, 446 330 L 366 274 L 302 262 Z"/>
+        <ellipse cx="262" cy="270" rx="64" ry="27" transform="rotate(-16 262 270)"/>
+        <ellipse cx="316" cy="234" rx="30" ry="22" transform="rotate(-24 316 234)"/>
+        <rect x="322" y="212" width="112" height="17" rx="8.5" transform="rotate(9 322 212)"/>
+        <path d="M 322 222 L 274 164 L 296 154 L 338 208 Z"/>
+        <rect x="222" y="292" width="34" height="14" rx="7" transform="rotate(28 222 292)"/>
+      </g>
+      <g id="olho-ptero" style="fill:var(--dino-olho,var(--accent,#0a0a0a))">
+        <circle cx="330" cy="226" r="7"/>
       </g>
     </g>
   </defs>

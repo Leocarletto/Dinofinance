@@ -157,37 +157,46 @@ function adivinharColunas(matriz) {
 /* ================= categorização por palavras-chave ================= */
 
 const REGRAS_DESPESA = [
-  [/supermerc|mercado|carrefour|assai|atacad|hortifruti|sacolao/, "Mercado"],
-  [/ifood|rappi|delivery|ubereats/, "Delivery"],
-  [/restauran|lanchon|pizzar|burger|hamburg|padaria|cafeter|sushi|churrasc/, "Restaurantes"],
-  [/farmac|drogar|drogasil|pague menos|panvel/, "Farmácia"],
-  [/posto|combustivel|ipiranga|shell|petrobras|br mania|gasolina|estaciona/, "Carro"],
-  [/\buber\b|\b99\b|99app|99 tecnologia|cabify|metro|onibus|bilhete unico|passagem urbana/, "Transporte"],
-  [/netflix|spotify|disney|hbo|\bmax\b|prime video|youtube|globoplay|deezer|icloud|google one/, "Assinaturas"],
+  [/supermerc|mercad(?!o ?(livre|pago))|carrefour|assai|atacad|hortifruti|sacolao|pao de acucar|paodeacucar|zaffari|sams? ?club/, "Mercado"],
+  [/ifood|\bifd\b|rappi|ubereats|uber ?eats|aiqfome|delivery/, "Delivery"],
+  [/restauran|lanchon|pizzar|burger|hamburg|padaria|cafeter|sushi|churrasc|mcdonald|mc ?donald|habibs|subway|outback|\bkfc\b|giraffas|spoleto|starbucks|cacau show|sorvet|\bacai\b/, "Restaurantes"],
+  [/farmac|drogar|drogasil|pague menos|panvel|droga ?raia|ultrafarma|nissei/, "Farmácia"],
+  [/posto|combustivel|ipiranga|shell|petrobras|br mania|gasolina|estaciona|sem parar|conectcar|veloe|estapar|lava ?(jato|rapido)|oficina|mecanic|pneu|autopec|auto ?center/, "Carro"],
+  [/\buber\b|\b99\b|99app|99 ?pop|99 tecnologia|cabify|buser|metro|onibus|bilhete unico|passagem urbana/, "Transporte"],
+  [/netflix|spotify|disney|hbo|\bmax\b|prime video|youtube|globoplay|deezer|icloud|google one|apple\.com|google play|crunchyroll|paramount|telecine|chatgpt|openai|anthropic|\bcanva\b|adobe/, "Assinaturas"],
   [/aluguel|condominio|imobiliar/, "Moradia"],
-  [/energia|enel|cemig|copel|light|celesc|coelba|sanea|sabesp|copasa|\bagua\b|\bgas\b|comgas/, "Moradia"],
-  [/internet|\bvivo\b|\bclaro\b|\btim\b|\boi\b|telefon|net servicos/, "Internet e telefone"],
-  [/academia|smartfit|gympass|wellhub|crossfit/, "Academia"],
-  [/\bpet\b|petz|cobasi|veterinar/, "Pet"],
-  [/escola|faculdade|universi|curso|udemy|alura|colegio/, "Educação"],
-  [/seguro/, "Seguros"],
-  [/\bdas\b|darf|imposto|tribut|prefeitura|receita federal|iptu|ipva|detran/, "Impostos"],
-  [/cinema|ingresso|show|teatro|steam|playstation|xbox|nintendo/, "Lazer"],
+  [/energia|enel|cemig|copel|light|celesc|coelba|cpfl|equatorial|neoenergia|energisa|sanea|sabesp|copasa|caesb|embasa|cagece|compesa|corsan|casan|\bagua\b|\bgas\b|comgas/, "Moradia"],
+  [/internet|\bvivo\b|\bclaro\b|\btim\b|\boi\b|telefon|net servicos|starlink|brisanet|algar/, "Internet e telefone"],
+  [/academia|smartfit|gympass|wellhub|crossfit|bluefit|selfit/, "Academia"],
+  [/\bpet\b|petz|cobasi|veterinar|petlove/, "Pet"],
+  [/escola|faculdade|universi|curso|udemy|alura|colegio|coursera|duolingo|wizard|ccaa|fisk|estacio/, "Educação"],
+  // "seguro" e abreviações de fatura/extrato: SEG VID, SEG AUTO, SEGVID…
+  [/segur|\bseg\b|segvid/, "Seguros"],
+  [/\bdas\b|darf|imposto|tribut|prefeitura|receita federal|iptu|ipva|detran|inss|simples nacional/, "Impostos"],
+  [/cinema|kinoplex|ingresso|show|teatro|steam|playstation|xbox|nintendo|epic games|riot games|blizzard|twitch/, "Lazer"],
   [/airbnb|hotel|pousada|latam|\bgol\b|azul linhas|booking|decolar|viagem/, "Viagem"],
-  [/amazon|shopee|mercado livre|mercadolivre|magalu|magazine|americanas|aliexpress|shein/, "Compras"],
-  [/medic|clinica|hospital|laborator|exame|consulta/, "Médica"],
+  [/amazon|shopee|mercado ?livre|mercadolivre|magalu|magazine|americanas|aliexpress|shein|temu|kabum|casas bahia|ponto frio|fast ?shop|renner|riachuelo|\bzara\b|decathlon|centauro|netshoes|leroy|havan|tok ?stok/, "Compras"],
+  [/medic|clinica|hospital|laborator|exame|consulta|unimed|amil|hapvida|plano de saude/, "Médica"],
   [/dentist|odonto/, "Dentista"],
   [/psicolog|terapia/, "Psicólogo"],
 ];
 
 const REGRAS_RENDA = [
-  [/salario|folha de pagamento|pagto salario|provento/, "Salário"],
-  [/nota fiscal|\bnf\b|nfs-?e|servico prestado/, "Serviços prestados"],
-  [/rendimento|juros|dividendo|resgate/, "Ganhos pontuais"],
+  [/salario|folha de pagamento|pagto salario|provento|pro ?labore/, "Salário"],
+  [/nota fiscal|\bnf\b|nfs-?e|servico prestado|honorari/, "Serviços prestados"],
+  [/rendimento|juros|dividendo|restitui|cashback|reembolso|estorno/, "Ganhos pontuais"],
 ];
+
+// transferência entre contas da mesma pessoa: aplicação/resgate de investimento,
+// TEV, "mesma titularidade"… — vira a categoria "Transferência", que o app
+// lista mas não soma como gasto nem como ganho
+const RE_TRANSFERENCIA = /mesma titularidade|entre contas|conta propria|contas proprias|aplicacao|\baplic\b|apl aut|resgate|res aut|\brdb\b|\brdc\b|\bcdb\b|\blca\b|\blci\b|poupanca|tesouro direto|rende facil/;
+// rendimento creditado (juros da poupança etc.) é ganho de verdade, não transferência
+const RE_GANHO_REAL = /rendimento|juros|dividendo/;
 
 export function sugerirCategoria(descricao, tipo) {
   const d = semAcento(descricao);
+  if (RE_TRANSFERENCIA.test(d) && !RE_GANHO_REAL.test(d)) return "Transferência";
   const regras = tipo === "renda" ? REGRAS_RENDA : REGRAS_DESPESA;
   for (const [re, cat] of regras) if (re.test(d)) return cat;
   return "Outros";

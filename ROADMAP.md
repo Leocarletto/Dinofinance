@@ -57,8 +57,10 @@ navegador tem seus próprios dados (localStorage por origem).
 
 **Objetivo de longo prazo: TODOS os gêneros de dinossauro já descritos pela
 paleontologia (mais de mil!)** como temas de perfil — cada um com arte,
-período, habitat e paleta. Os 4 atuais (T. rex, Carnotauro, Oxalaia,
-Braquiossauro) são as primeiras fichas do catálogo.
+período, habitat e paleta. O catálogo tem 13 fichas: T. rex, Carnotauro,
+Oxalaia, Braquiossauro, Espinossauro, Triceratops, Parassaurolofo,
+Anquilossauro, Estegossauro, Velociraptor, Paquicefalossauro, Dilofossauro
+e Pterossauro (os 9 novos ainda sem habitat animado — passo 4 da receita).
 
 #### 🦴 Receita: como adicionar um dinossauro novo (uns 30–60 min cada)
 
